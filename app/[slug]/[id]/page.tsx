@@ -1,24 +1,28 @@
 import { me } from "../../me";
-import {about} from "../../about"; 
+import { about } from "../../about";
 import Slide from "../../components/Slide";
 
-const dataSources: Record<string, React.ReactNode[]> = {
-  me: me,
-  about:about,
-
+const dataSources: Record<string, React.ReactElement[]> = {
+  me,
+  about,
 };
+
+interface Params {
+  slug: string;
+  id: string;
+}
 
 export default async function SlidePage({
   params,
 }: {
-  params: { slug: string; id: string };
+  params: Promise<Params>;
 }) {
-  const { slug, id } = params;
+  const { slug, id } = await params;
   const slideId = parseInt(id, 10);
 
-  const slidesData = dataSources[slug];
+  const slidesData = dataSources[slug] ?? [];
 
-  if (!slidesData || slideId < 1 || slideId > slidesData.length) {
+  if (slideId < 1 || slideId > slidesData.length) {
     return <div>Page not found</div>;
   }
 
@@ -31,17 +35,13 @@ export default async function SlidePage({
   );
 }
 
-export async function generateStaticParams() {
-  const paths = [];
-
-  for (const slug of Object.keys(dataSources)) {
-    paths.push(
-      ...dataSources[slug].map((_, index) => ({
-        slug,
-        id: (index + 1).toString(),
-      }))
-    );
-  }
+export function generateStaticParams() {
+  const paths = Object.keys(dataSources).flatMap((slug) =>
+    dataSources[slug].map((_, index) => ({
+      slug,
+      id: (index + 1).toString(),
+    }))
+  );
 
   return paths;
 }
