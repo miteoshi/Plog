@@ -13,7 +13,7 @@ export default async function SlidePage({
 }: {
   params: { slug: string; id: string };
 }) {
-  const { slug, id } = await params;
+  const { slug, id } = params;
   const slideId = parseInt(id, 10);
 
   const slidesData = dataSources[slug];
