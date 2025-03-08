@@ -143,32 +143,10 @@ function SlideContentRenderer({ content }: { content: SlideContent }) {
         </div>
       );
 
-    case "GifParagraph":
-      return (
-        <div className="flex flex-col items-center justify-center min-h-screen p-6">
-          <Image
-            unoptimized
-            src={
-              content.gif ||
-              "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"
-            }
-            alt="GIF"
-            width={500}
-            height={300}
-            priority
-            className="mb-4 mx-auto rounded-lg shadow-lg"
-          />
-          <p className="max-w-2xl text-left text-base sm:text-lg md:text-xl lg:text-2xl">
-            {content.paragraph}
-          </p>
-          {content.links && <SlideLinks links={content.links} />}
-        </div>
-      );
-
     case "GifParagraphList":
 return (
-  <div className="flex flex-col items-center justify-center min-h-screen p-6">
-    {/* Image container with fixed dimensions to prevent layout shifts */}
+  <div className="flex flex-col items-center min-h-screen p-6">
+    {/* Image container remains centered */}
     <div className="flex-shrink-0">
       <Image
         src={
@@ -182,12 +160,10 @@ return (
       />
     </div>
 
-    {/* Text container that adapts based on screen size */}
-    <div className="max-w-2xl text-left mt-6">
-      <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-2">
-        {content.paragraph}
-      </p>
-      <ul className="list-disc pl-5 text-base sm:text-lg md:text-xl">
+    {/* Text container: Ensures left alignment */}
+    <div className="max-w-5xl text-left mt-6 w-full">
+      <p className="text-lg sm:text-xl text-gray-400">{content.paragraph}</p>
+      <ul className="max-w-5xl list-disc pl-4 sm:pl-6 mt-4 sm:space-y-2 text-base sm:text-lg text-gray-400 leading-relaxed">
         {content.list?.map((item, index) => (
           <li key={index}>{item}</li>
         ))}
@@ -200,17 +176,22 @@ return (
 
     case "ImageText":
       return (
-        <div className="flex flex-col md:flex-row-reverse items-center justify-center min-h-screen p-6 space-y-6 md:space-y-0 md:space-x-12">
-          <Image
-            src={content.image || "https://via.placeholder.com/500"}
-            alt="Image"
-            width={500}
-            height={300}
-            priority
-            className="w-full md:w-auto rounded-lg shadow-lg"
-          />
+        <div className="  flex flex-col md:flex-row-reverse items-center justify-center min-h-screen p-6 gap-x-12 space-y-6 md:space-y-0">
+          {/* Image on the right */}
+          <div className="flex-shrink-0">
+            <Image
+              src={content.image || "https://via.placeholder.com/500"}
+              alt="Image"
+              width={400}
+              height={300}
+              priority
+              className="rounded-lg shadow-lg"
+            />
+          </div>
+
+          {/* Text on the left */}
           <div className="max-w-2xl text-left">
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl">
+            <p className="text-lg sm:text-xl text-gray-400">
               {content.paragraph}
             </p>
             {content.links && <SlideLinks links={content.links} />}
