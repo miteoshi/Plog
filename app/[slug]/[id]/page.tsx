@@ -1,8 +1,9 @@
 import { me } from "../../me";
 import { about } from "../../about";
 import Slide from "../../components/Slide";
+import { SlideContent } from "../../type"
 
-const dataSources: Record<string, React.ReactElement[]> = {
+const dataSources: Record<string, SlideContent[]> = {
   me,
   about,
 };
