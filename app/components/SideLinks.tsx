@@ -7,27 +7,21 @@ export function SlideLinks({
 }) {
   return (
     <div className="mt-4">
-      {links.map((link, index) =>
-        link.href.startsWith("http") ? (
+      {links.map((link, index) => (
+        <span key={index} className="inline-block">
           <a
-            key={index}
             href={link.href}
-            target="_blank"
+            target={link.href.startsWith("http") ? "_blank" : "_self"}
             rel="noopener noreferrer"
             className="text-base sm:text-md text-blue-300 leading-relaxed"
           >
             {link.label}
           </a>
-        ) : (
-          <a
-            key={index}
-            href={link.href}
-            className="text-base sm:text-md text-blue-300 leading-relaxed"
-          >
-            {link.label}
-          </a>
-        )
-      )}
+          {index < links.length - 1 && (
+            <span className="mx-2 text-gray-400">|</span>
+          )}
+        </span>
+      ))}
     </div>
   );
 }

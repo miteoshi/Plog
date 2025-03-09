@@ -1,12 +1,9 @@
-import { me } from "../../me";
-import { about } from "../../about";
-import Slide from "../../components/Slide";
-import { SlideContent } from "../../type"
 
-const dataSources: Record<string, SlideContent[]> = {
-  me,
-  about,
-};
+import { blogsData } from "@/app/data/blogs";
+import Slide from "@/app/components/Slide";
+import { SlideContent } from "@/app/type";
+
+const dataSources: Record<string, SlideContent[]> = blogsData
 
 interface Params {
   slug: string;

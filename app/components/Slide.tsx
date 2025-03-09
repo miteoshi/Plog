@@ -5,11 +5,12 @@ import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import BeamsBackground from "./BeamsBackground";
 import type { SlideContent } from "../type";
-import { Para, ParagraphList } from "./Para";
+import { Para,} from "./Para";
 import { Opener } from "./Opener";
-import { ImagePara, ImageParagraph } from "./ImagePara";
-import { ImageTextSide, ParaSideImage } from "./ParaSideImage";
-import { CodePara, CodeParagraph } from "./CodePara";
+import { ImagePara,} from "./ImagePara";
+import { ParaSideImage } from "./ParaSideImage";
+import { CodePara, } from "./CodePara";
+import { Menu } from "./Menu";
 
 
 interface SlideProps {
@@ -92,9 +93,9 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
         onTouchEnd={handleTouchEnd}
         onClick={handleClick}
       >
-        <BeamsBackground>
+       
           <SlideContentRenderer content={content} />
-        </BeamsBackground>
+        
 
         <div className="absolute bottom-4 left-4 text-sm opacity-50 p-2">
           {id}/{totalSlides}
@@ -113,7 +114,11 @@ function SlideContentRenderer({ content }: { content: SlideContent }) {
 
     case "Opener":
       
-      return <Opener content={content} />;
+      return (
+        <BeamsBackground>
+          <Opener content={content} />
+        </BeamsBackground>
+      );
 
     case "Para":
       return <Para content={content} />;
@@ -122,6 +127,8 @@ function SlideContentRenderer({ content }: { content: SlideContent }) {
       return <ParaSideImage content={content} />;
     case "CodePara":
       return  <CodePara content={content} />;
+    case "Menu":
+      return <Menu content={content} />;
     default:
       return <div>Invalid slide type</div>;
   }
