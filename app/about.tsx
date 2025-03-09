@@ -2,7 +2,7 @@ import { SlideContent } from "./type";
 
 export const about: SlideContent[] = [
   {
-    type: "SingleParagraph",
+    type: "Para",
     title: "About This Blog",
     paragraph:
       "This blog is a space where I share my learnings, projects, and technical insights.",
@@ -10,10 +10,10 @@ export const about: SlideContent[] = [
     links: [{ label: "Explore More", href: "/me/1" }],
   },
   {
-    type: "GifParagraphList",
+    type: "ImagePara",
     title: "Let's Connect!",
     paragraph: "Feel free to reach out if you want to collaborate!",
-    gif: "https://c.tenor.com/QaDAVbWJYj0AAAAd/tenor.gif",
+    image: "https://c.tenor.com/ShDlvYkSEjcAAAAd/tenor.gif",
     links: [
       { label: "LinkedIn", href: "https://linkedin.com/in/yourprofile" },
       { label: "Twitter", href: "https://twitter.com/yourhandle" },

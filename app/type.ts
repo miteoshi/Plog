@@ -1,15 +1,15 @@
 export type SlideContent = {
   type:
-    | "SingleParagraph"
-    | "ParagraphList"
-    | "ImageText"
-    | "GifParagraph"
-    | "GifParagraphList";
+  "Para"
+  | "Opener"
+  |"ParaSideImage"
+  |"ImagePara"
+  |"CodePara"
   title: string;
   paragraph: string;
   subparagraph?: string;
   list?: string[];
+  codeblocks?:string[];
   image?: string;
-  gif?: string;
   links?: { label: string; href: string }[];
 };

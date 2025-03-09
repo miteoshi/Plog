@@ -1,18 +1,22 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
-import Link from "next/link";
+
 import { useEffect, useRef } from "react";
 import BeamsBackground from "./BeamsBackground";
 import type { SlideContent } from "../type";
+import { Para, ParagraphList } from "./Para";
+import { Opener } from "./Opener";
+import { ImagePara, ImageParagraph } from "./ImagePara";
+import { ImageTextSide, ParaSideImage } from "./ParaSideImage";
+import { CodePara, CodeParagraph } from "./CodePara";
+
 
 interface SlideProps {
   content: SlideContent;
   id: number;
   totalSlides: number;
 }
-
 
 export default function Slide({ content, id, totalSlides }: SlideProps) {
   const router = useRouter();
@@ -39,39 +43,38 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
     }
   };
 
-    const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-      touchStartX.current = e.touches[0].clientX;
-    };
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
 
-    const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-      touchEndX.current = e.touches[0].clientX;
-    };
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
 
-    const handleTouchEnd = () => {
-      if (touchStartX.current === null || touchEndX.current === null) return;
-      const swipeDistance = touchStartX.current - touchEndX.current;
-      const minSwipeDistance = 50;
+  const handleTouchEnd = () => {
+    if (touchStartX.current === null || touchEndX.current === null) return;
+    const swipeDistance = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 50;
 
-      if (swipeDistance > minSwipeDistance && id < totalSlides) {
-        handleNavigation(id + 1);
-      } else if (swipeDistance < -minSwipeDistance && id > 1) {
-        handleNavigation(id - 1);
-      }
+    if (swipeDistance > minSwipeDistance && id < totalSlides) {
+      handleNavigation(id + 1);
+    } else if (swipeDistance < -minSwipeDistance && id > 1) {
+      handleNavigation(id - 1);
+    }
 
-      touchStartX.current = null;
-      touchEndX.current = null;
-    };
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
 
-    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-      const { clientX, currentTarget } = e;
-      const halfWidth = currentTarget.clientWidth / 2;
-      if (clientX < halfWidth && id > 1) {
-        handleNavigation(id - 1);
-      } else if (clientX >= halfWidth && id < totalSlides) {
-        handleNavigation(id + 1);
-      }
-    };
-
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { clientX, currentTarget } = e;
+    const halfWidth = currentTarget.clientWidth / 2;
+    if (clientX < halfWidth && id > 1) {
+      handleNavigation(id - 1);
+    } else if (clientX >= halfWidth && id < totalSlides) {
+      handleNavigation(id + 1);
+    }
+  };
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -89,14 +92,13 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
         onTouchEnd={handleTouchEnd}
         onClick={handleClick}
       >
+        <BeamsBackground>
+          <SlideContentRenderer content={content} />
+        </BeamsBackground>
 
-      <BeamsBackground>
-        <SlideContentRenderer content={content} />
-      </BeamsBackground>
-
-      <div className="absolute bottom-4 left-4 text-sm opacity-50 p-2">
-        {id}/{totalSlides}
-      </div>
+        <div className="absolute bottom-4 left-4 text-sm opacity-50 p-2">
+          {id}/{totalSlides}
+        </div>
       </div>
     </div>
   );
@@ -104,133 +106,23 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
 
 // Renders different slide types
 function SlideContentRenderer({ content }: { content: SlideContent }) {
+ 
   switch (content.type) {
-    case "ParagraphList":
-      return (
-        <div className="flex flex-col items-center justify-center min-h-screen p-6">
-          <div className="max-w-2xl text-left">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              {content.title}
-            </h2>
-            <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-              {content.paragraph}
-            </p>
-            <ul className="list-disc pl-4 sm:pl-6 mt-4 sm:space-y-2 text-base sm:text-lg text-gray-700 leading-relaxed">
-              {content.list?.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-            {content.links && <SlideLinks links={content.links} />}
-          </div>
-        </div>
-      );
+    case "ImagePara":
+      return <ImagePara content={content} />;
 
-    case "SingleParagraph":
-      return (
-        <div className="flex flex-col items-center justify-center min-h-screen p-6">
-          <div className="max-w-xl text-center">
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-white">
-              {content.title}
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-400">
-              {content.paragraph}
-            </p>
-            <p className="text-sm sm:text-sm text-gray-500 mt-5">
-              {content.subparagraph}
-            </p>
-            {content.links && <SlideLinks links={content.links} />}
-          </div>
-        </div>
-      );
+    case "Opener":
+      
+      return <Opener content={content} />;
 
-    case "GifParagraphList":
-return (
-  <div className="flex flex-col items-center min-h-screen p-6">
-    {/* Image container remains centered */}
-    <div className="flex-shrink-0">
-      <Image
-        src={
-          content.gif || "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"
-        }
-        alt="GIF"
-        width={400}
-        height={250}
-        priority
-        className="rounded-lg shadow-lg mt-5 object-cover"
-      />
-    </div>
+    case "Para":
+      return <Para content={content} />;
 
-    {/* Text container: Ensures left alignment */}
-    <div className="max-w-5xl text-left mt-6 w-full">
-      <p className="text-lg sm:text-xl text-gray-400">{content.paragraph}</p>
-      <ul className="max-w-5xl list-disc pl-4 sm:pl-6 mt-4 sm:space-y-2 text-base sm:text-lg text-gray-400 leading-relaxed">
-        {content.list?.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-      {content.links && <SlideLinks links={content.links} />}
-    </div>
-  </div>
-);
-
-
-    case "ImageText":
-      return (
-        <div className="  flex flex-col md:flex-row-reverse items-center justify-center min-h-screen p-6 gap-x-12 space-y-6 md:space-y-0">
-          {/* Image on the right */}
-          <div className="flex-shrink-0">
-            <Image
-              src={content.image || "https://via.placeholder.com/500"}
-              alt="Image"
-              width={400}
-              height={300}
-              priority
-              className="rounded-lg shadow-lg"
-            />
-          </div>
-
-          {/* Text on the left */}
-          <div className="max-w-2xl text-left">
-            <p className="text-lg sm:text-xl text-gray-400">
-              {content.paragraph}
-            </p>
-            {content.links && <SlideLinks links={content.links} />}
-          </div>
-        </div>
-      );
-
+    case "ParaSideImage":
+      return <ParaSideImage content={content} />;
+    case "CodePara":
+      return  <CodePara content={content} />;
     default:
       return <div>Invalid slide type</div>;
   }
-}
-
-// Renders internal & external links
-function SlideLinks({ links }: { links: { label: string; href: string }[] }) {
-  return (
-    <div className="mt-4">
-      {links.map((link, index) =>
-        link.href.startsWith("http") ? (
-          <a
-            key={index}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-md sm:text-lg text-gray-400 mt-4"
-          >
-            {link.label}
-          </a>
-        ) : (
-          <Link
-            key={index}
-            href={link.href}
-            rel="noopener noreferrer"
-            target="_blank"
-            className="text-md sm:text-lg text-gray-400 mt-4"
-          >
-            {link.label}
-          </Link>
-        )
-      )}
-    </div>
-  );
 }
