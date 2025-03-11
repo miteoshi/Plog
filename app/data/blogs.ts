@@ -9,8 +9,7 @@ export const blogsData: BlogsData = {
     {
       type: "Opener",
       title: "Docker Daily",
-      paragraph:
-        "A dialy diary on Docker",
+      paragraph: "A dialy diary on Docker",
       subparagraph: "By Piyush Joshi",
       links: [{ label: MAIN_MENU, href: MAIN_MENU_LINK }],
     },
@@ -130,7 +129,7 @@ Feel free to connect with me`,
   menu: [
     {
       type: "Opener",
-      title: "Docker Love",
+      title: "Docker Daily",
       paragraph: "Learn about isloation and depression with me 🐋",
       subparagraph: "Use arrow keys or tap left/right to navigate slides.",
       links: [{ label: "Go through", href: "/docker/1" }],
