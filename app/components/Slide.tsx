@@ -117,17 +117,22 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
           </div>
         )}
 
-        <div className="absolute top-4 right-4 flex items-center space-x-3 bg-black/50 text-white px-3 py-1 rounded-lg shadow-md">
-          <span className="text-sm">
-            {id}/{totalSlides}
-          </span>
-          <button
-            className="text-xs bg-gray-800 px-2 py-1 rounded-md hover:bg-gray-700"
-            onClick={toggleNavigation }
-          >
-            {isNavigationEnabled ? "Disable Swipe" : "Enable Swipe"}
-          </button>
-        </div>
+        {id !== 1 && (
+          <div className="pb-2 flex ml-3 items-center">
+            <span className="text-sm text-gray-500">
+              {id}/{totalSlides}
+            </span>
+            <button
+              className="text-sm px-3 ml-3 py-1 text-gray-500 rounded-full bg-gray-800/40 hover:bg-gray-700/70 hover:text-gray-200 transition"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleNavigation();
+              }}
+            >
+              {isNavigationEnabled ? "🔒 Lock Slide" : "🔓 Unlock"}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

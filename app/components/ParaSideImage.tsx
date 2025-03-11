@@ -5,8 +5,8 @@ import ReactMarkdown from "react-markdown";
 
 export function ParaSideImage({ content }: { content: SlideContent }) {
   return (
-    <div className="flex flex-col md:flex-row-reverse items-center justify-center min-h-screen p-6 gap-x-12 space-y-6 md:space-y-0">
-      {/* Image on the right side */}
+    <div className="flex flex-col md:flex-col lg:flex-row-reverse items-center justify-center min-h-screen p-6 gap-6">
+      {/* Image on top for mobile & medium screens; right side for large screens */}
       {content.image && (
         <Image
           src={content.image}
@@ -18,21 +18,17 @@ export function ParaSideImage({ content }: { content: SlideContent }) {
         />
       )}
 
-      {/* Content on the left side */}
+      {/* Content below image for mobile/medium screens, left for large screens */}
       <div className="max-w-2xl text-left text-base sm:text-lg text-gray-500 leading-relaxed">
-        {/* Heading on top */}
         {content.title && (
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-200">
             {content.title}
           </h2>
         )}
-
-        {/* Markdown Content */}
         <ReactMarkdown>{content.paragraph}</ReactMarkdown>
-
-        {/* Links if available */}
         {content.links && <SlideLinks links={content.links} />}
       </div>
     </div>
   );
 }
+

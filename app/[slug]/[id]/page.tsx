@@ -25,11 +25,13 @@ export default async function SlidePage({
   }
 
   return (
+    
     <Slide
       content={slidesData[slideId - 1]}
       id={slideId}
       totalSlides={slidesData.length}
     />
+    
   );
 }
 

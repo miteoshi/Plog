@@ -4,7 +4,7 @@ import { SlideLinks } from "./SideLinks";
 import ReactMarkdown from "react-markdown";
 export function ImagePara({ content }: { content: SlideContent }) {
   return (
-    <div className="flex flex-col items-center min-h-screen p-6">
+    <div className="flex flex-col justify-center items-center min-h-screen p-6">
     <h2 className="text-3xl sm:text-4xl font-bold mb-4">{content.title}</h2>
       {content.image&&<Image
         src={
