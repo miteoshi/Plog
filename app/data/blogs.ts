@@ -9,8 +9,9 @@ export const blogsData: BlogsData = {
     {
       type: "Opener",
       title: "Docker Love",
-      paragraph: "Learn about isloation and depression",
-      subparagraph: "Use arrow keys or tap left/right to navigate slides.",
+      paragraph:
+        "A dialy diary on Docker",
+      subparagraph: "By Piyush Joshi",
       links: [{ label: MAIN_MENU, href: MAIN_MENU_LINK }],
     },
     {
@@ -130,7 +131,7 @@ Feel free to connect with me`,
     {
       type: "Opener",
       title: "Docker Love",
-      paragraph: "Learn about isloation and depression",
+      paragraph: "Learn about isloation and depression with me 🐋",
       subparagraph: "Use arrow keys or tap left/right to navigate slides.",
       links: [{ label: "Go through", href: "/docker/1" }],
     },

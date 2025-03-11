@@ -1,17 +1,14 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-
 import { useEffect, useRef, useState } from "react";
 import BeamsBackground from "./BeamsBackground";
 import type { SlideContent } from "../type";
-import { Para,} from "./Para";
+import { Para } from "./Para";
 import { Opener } from "./Opener";
-import { ImagePara,} from "./ImagePara";
+import { ImagePara } from "./ImagePara";
 import { ParaSideImage } from "./ParaSideImage";
-import { CodePara, } from "./CodePara";
-
-
+import { CodePara } from "./CodePara";
 
 interface SlideProps {
   content: SlideContent;
@@ -26,8 +23,6 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
   const touchEndX = useRef<number | null>(null);
   const [isNavigationEnabled, setIsNavigationEnabled] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
-
-  const pathSegments = pathname.split("/").filter(Boolean);
 
   const handleNavigation = (newPath: string | number) => {
     if (typeof newPath === "string") {
@@ -58,14 +53,21 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
   };
 
   const handleTouchEnd = () => {
-    if (!isNavigationEnabled) return;
-    if (touchStartX.current === null || touchEndX.current === null) return;
+    if (
+      !isNavigationEnabled ||
+      touchStartX.current === null ||
+      touchEndX.current === null
+    )
+      return;
     const swipeDistance = touchStartX.current - touchEndX.current;
-    const minSwipeDistance = 50;
+    const minSwipeDistance = 150;
 
+    // 🔹 Swipe LEFT (←) → Go to NEXT slide
     if (swipeDistance > minSwipeDistance && id < totalSlides) {
       handleNavigation(id + 1);
-    } else if (swipeDistance < -minSwipeDistance && id > 1) {
+    }
+    // 🔹 Swipe RIGHT (→) → Go to PREVIOUS slide
+    else if (swipeDistance < -minSwipeDistance && id > 1) {
       handleNavigation(id - 1);
     }
 
@@ -85,12 +87,22 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
   };
 
   const toggleNavigation = () => {
-      setIsNavigationEnabled((prev) => !prev);
-      if (isNavigationEnabled) {
-        setShowInfo(true);
-        setTimeout(() => setShowInfo(false), 3000); // Hide after 3 seconds
-      }
-    };
+    setIsNavigationEnabled((prev) => !prev);
+    if (isNavigationEnabled) {
+      setShowInfo(true);
+      setTimeout(() => setShowInfo(false), 3000); // Hide after 3 seconds
+    }
+  };
+
+  // Prefetch the next slide when the component loads
+  useEffect(() => {
+    if (id < totalSlides) {
+      const nextSlideUrl = `${pathname.split("/").slice(0, -1).join("/")}/${
+        id + 1
+      }`;
+      router.prefetch(nextSlideUrl);
+    }
+  }, [id, totalSlides, router, pathname]);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -140,26 +152,21 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
 
 // Renders different slide types
 function SlideContentRenderer({ content }: { content: SlideContent }) {
- 
   switch (content.type) {
     case "ImagePara":
       return <ImagePara content={content} />;
-
     case "Opener":
-      
       return (
         <BeamsBackground>
           <Opener content={content} />
         </BeamsBackground>
       );
-
     case "Para":
       return <Para content={content} />;
-
     case "ParaSideImage":
       return <ParaSideImage content={content} />;
     case "CodePara":
-      return  <CodePara content={content} />;
+      return <CodePara content={content} />;
     default:
       return <div>Invalid slide type</div>;
   }
