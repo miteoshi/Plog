@@ -2,7 +2,7 @@
 
 import { useRouter, usePathname } from "next/navigation";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import BeamsBackground from "./BeamsBackground";
 import type { SlideContent } from "../type";
 import { Para,} from "./Para";
@@ -10,7 +10,7 @@ import { Opener } from "./Opener";
 import { ImagePara,} from "./ImagePara";
 import { ParaSideImage } from "./ParaSideImage";
 import { CodePara, } from "./CodePara";
-import { Menu } from "./Menu";
+
 
 
 interface SlideProps {
@@ -24,6 +24,8 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
   const pathname = usePathname();
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
+  const [isNavigationEnabled, setIsNavigationEnabled] = useState(true);
+  const [showInfo, setShowInfo] = useState(false);
 
   const pathSegments = pathname.split("/").filter(Boolean);
 
@@ -37,6 +39,7 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
+    if (!isNavigationEnabled) return;
     if (event.key === "ArrowRight" && id < totalSlides) {
       handleNavigation(id + 1);
     } else if (event.key === "ArrowLeft" && id > 1) {
@@ -45,14 +48,17 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
   };
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isNavigationEnabled) return;
     touchStartX.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isNavigationEnabled) return;
     touchEndX.current = e.touches[0].clientX;
   };
 
   const handleTouchEnd = () => {
+    if (!isNavigationEnabled) return;
     if (touchStartX.current === null || touchEndX.current === null) return;
     const swipeDistance = touchStartX.current - touchEndX.current;
     const minSwipeDistance = 50;
@@ -68,6 +74,7 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
   };
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isNavigationEnabled) return;
     const { clientX, currentTarget } = e;
     const halfWidth = currentTarget.clientWidth / 2;
     if (clientX < halfWidth && id > 1) {
@@ -77,12 +84,20 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
     }
   };
 
+  const toggleNavigation = () => {
+      setIsNavigationEnabled((prev) => !prev);
+      if (isNavigationEnabled) {
+        setShowInfo(true);
+        setTimeout(() => setShowInfo(false), 3000); // Hide after 3 seconds
+      }
+    };
+
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [isNavigationEnabled]);
 
   return (
     <div className="relative w-full h-[calc(100vh-48px)] flex flex-col justify-center items-center">
@@ -93,12 +108,25 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
         onTouchEnd={handleTouchEnd}
         onClick={handleClick}
       >
-       
-          <SlideContentRenderer content={content} />
-        
+        <SlideContentRenderer content={content} />
 
-        <div className="absolute bottom-4 left-4 text-sm opacity-50 p-2">
-          {id}/{totalSlides}
+        {/* Info Box (Appears when swipe is disabled) */}
+        {showInfo && (
+          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-white text-black px-4 py-2 rounded-md text-sm transition-opacity duration-500 animate-fade">
+            Now you can copy the content
+          </div>
+        )}
+
+        <div className="absolute top-4 right-4 flex items-center space-x-3 bg-black/50 text-white px-3 py-1 rounded-lg shadow-md">
+          <span className="text-sm">
+            {id}/{totalSlides}
+          </span>
+          <button
+            className="text-xs bg-gray-800 px-2 py-1 rounded-md hover:bg-gray-700"
+            onClick={toggleNavigation }
+          >
+            {isNavigationEnabled ? "Disable Swipe" : "Enable Swipe"}
+          </button>
         </div>
       </div>
     </div>
@@ -127,8 +155,6 @@ function SlideContentRenderer({ content }: { content: SlideContent }) {
       return <ParaSideImage content={content} />;
     case "CodePara":
       return  <CodePara content={content} />;
-    case "Menu":
-      return <Menu content={content} />;
     default:
       return <div>Invalid slide type</div>;
   }

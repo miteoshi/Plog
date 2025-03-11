@@ -1,3 +1,4 @@
+import { code } from "motion/react-client";
 import { BlogsData } from "../type";
 
 const MAIN_MENU = "Go to menu"
@@ -65,18 +66,16 @@ export const blogsData: BlogsData = {
     {
       type: "CodePara",
       title: "havne't you had enough? im still writing the blog",
-      paragraph: `
-  BLAH BLAH BALH
-
-  - First
-  - Second
-  - Third
+      paragraph: `Some description *here*
 `,
-      codeblocks: [
-        `
-    Here is an example of how to create a delay function in JavaScript using **Promises**:
+      codeblock: [
+        {
+          codeparagraph: `
+  Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
 
-    \`\`\`javascript
+The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+  `,
+          code: `
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
     async function example() {
@@ -86,8 +85,8 @@ export const blogsData: BlogsData = {
     }
 
     example();
-    \`\`\`
-  `,
+    `,
+        },
       ],
       image: "https://c.tenor.com/QaDAVbWJYj0AAAAd/tenor.gif",
       links: [
