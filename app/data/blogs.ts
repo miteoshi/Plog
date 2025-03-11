@@ -8,7 +8,7 @@ export const blogsData: BlogsData = {
   docker: [
     {
       type: "Opener",
-      title: "Docker Love",
+      title: "Docker Daily",
       paragraph:
         "A dialy diary on Docker",
       subparagraph: "By Piyush Joshi",
