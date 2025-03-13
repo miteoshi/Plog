@@ -43,16 +43,23 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
   };
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+     if (e.target instanceof HTMLAnchorElement) {
+       return;
+     }
     if (!isNavigationEnabled) return;
     touchStartX.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+     if (e.target instanceof HTMLAnchorElement) {
+       return;
+     }
     if (!isNavigationEnabled) return;
     touchEndX.current = e.touches[0].clientX;
   };
 
   const handleTouchEnd = () => {
+    
     if (
       !isNavigationEnabled ||
       touchStartX.current === null ||
@@ -76,6 +83,9 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
   };
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+     if (e.target instanceof HTMLAnchorElement) {
+       return;
+     }
     if (!isNavigationEnabled) return;
     const { clientX, currentTarget } = e;
     const halfWidth = currentTarget.clientWidth / 2;
