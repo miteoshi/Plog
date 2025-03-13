@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+#not for prod
+/app/create
+/app/edit
+/app/manage
