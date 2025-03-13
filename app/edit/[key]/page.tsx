@@ -17,7 +17,7 @@ export default function EditBlogPage({
 }: {
   params: Promise<{ key: string }>;
 }) {
-  //restrictInProduction();
+restrictInProduction();
 
   const router = useRouter();
   const [key, setKey] = useState<string | null>(null);

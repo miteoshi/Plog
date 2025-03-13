@@ -19,7 +19,7 @@ import { restrictInProduction } from "@/lib/restrict";
 
 
 export default function ManageBlogsPage() {
-  // restrictInProduction();
+restrictInProduction();
 
   const [blogs, setBlogs] = useState<BlogsData>({});
   const [loading, setLoading] = useState(true);

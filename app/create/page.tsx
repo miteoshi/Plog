@@ -16,7 +16,7 @@ import { restrictInProduction } from "@/lib/restrict";
 
 export default function CreateBlogPage() {
 
-  //restrictInProduction();
+restrictInProduction();
 
   const router = useRouter();
   const [blogKey, setBlogKey] = useState("");
