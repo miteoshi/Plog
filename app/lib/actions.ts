@@ -4,7 +4,7 @@ import fs from "fs/promises";
 import path from "path";
 import type { BlogsData, BlogData } from "@/type";
 
-const BLOG_JSON_PATH = process.env.BLOG_PATH || "default/path/to/blogs.json";;
+const BLOG_JSON_PATH = "./app/data/blogs.json";
 
 // Read blogs data from JSON file
 export async function getBlogs(): Promise<BlogsData> {

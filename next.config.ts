@@ -11,15 +11,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  async redirects() {
-    return isDev
-      ? []
-      : [
-          { source: "/manage", destination: "/", permanent: false },
-          { source: "/create", destination: "/", permanent: false },
-          { source: "/edit", destination: "/", permanent: false },
-        ];
-  },
+  // async redirects() {
+  //   return isDev
+  //     ? []
+  //     : [
+  //         { source: "/manage", destination: "/", permanent: false },
+  //         { source: "/create", destination: "/", permanent: false },
+  //         { source: "/edit", destination: "/", permanent: false },
+  //       ];
+  // },
 };
 
 export default nextConfig;
