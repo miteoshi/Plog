@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Plog
 
-## Getting Started
+Welcome to the Plog! This project is a minimalistic blog platform built with Next.js. It's designed to provide an engaging, slide-based experience for browsing blog posts.
 
-First, run the development server:
+## CMS
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The content management system (CMS) works locally in development. Since Vercel's file system is read-only, you won't be able to edit content directly on the deployed site. However, you can manage the content locally by editing the JSON files that store the blog data.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- For blog creation: `/create`
+- To manage blogs: `/manage`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Database
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The blog data is stored in a JSON format. Each blog post and content section is organized into categories. You can add, edit, or delete content by modifying the relevant JSON files on your local machine.
 
-## Learn More
+## Installation
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository:
+    ```bash
+    git clone <repository_url>
+    cd <project_directory>
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Run the project locally:
+    ```bash
+    npm run dev
+    ```
 
-## Deploy on Vercel
+Now, you can visit `http://localhost:3000` in your browser to view the site.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Usage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Navigate through slides using the arrow keys or swipe left/right.
+- To edit content, modify the corresponding JSON files in the `data` folder locally.
+
+## Todo
+
+- [ ] No more JSON. Time to switch to supabase.
+- [ ] Authentication so that everyone can post
+- [ ] Add Feedback/Comment Feature
