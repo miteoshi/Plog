@@ -71,6 +71,7 @@ export default function BeamsBackground({
       canvas.style.height = `${window.innerHeight}px`;
       ctx.scale(dpr, dpr);
 
+      // Create new beams after resizing
       const totalBeams = MINIMUM_BEAMS * 1.5;
       beamsRef.current = Array.from({ length: totalBeams }, () =>
         createBeam(canvas.width, canvas.height)
@@ -86,7 +87,7 @@ export default function BeamsBackground({
       const column = index % 3;
       const spacing = canvas.width / 3;
 
-      beam.y = canvas.height + 100;
+      beam.y = canvas.height + 100; // Reset the beam to off-screen
       beam.x =
         column * spacing + spacing / 2 + (Math.random() - 0.5) * spacing * 0.5;
       beam.width = 100 + Math.random() * 100;
@@ -138,7 +139,7 @@ export default function BeamsBackground({
       if (!canvas || !ctx) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.filter = "blur(35px)";
+      ctx.filter = "blur(35px)"; // Applying blur
 
       const totalBeams = beamsRef.current.length;
       beamsRef.current.forEach((beam, index) => {
