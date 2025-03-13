@@ -1,4 +1,34 @@
 {
+  "about": [
+    {
+      "type": "Opener",
+      "title": "Plog",
+      "paragraph": "A minimalistic blog site.",
+      "subparagraph": "Use arrow keys or tap left/right to navigate slides.",
+      "links": [
+        {
+          "label": "<- Menu",
+          "href": "/menu"
+        }
+      ]
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "About the Author",
+      "paragraph": "*Hey there!*\nI'm a _dumbass_ software engineer, who loves to learn.\nHere I will post my blogs :)\n\nTake care!\n\nFeel free to connect with me",
+      "image": "https://c.tenor.com/JPNdFiad9C8AAAAC/tenor.gif",
+      "links": [
+        {
+          "label": "LinkedIn",
+          "href": "https://www.linkedin.com/in/piyush-j-oshi/"
+        },
+        {
+          "label": "Github",
+          "href": "https://github.com/miteoshi"
+        }
+      ]
+    }
+  ],
   "docker": [
     {
       "type": "Opener",
@@ -61,7 +91,19 @@
       ]
     }
   ],
-  "about": [
+  "w":[
+{
+  "type": "Opener",
+  "title": "Slide View",
+  "paragraph": "Browse through various blogs in a slideshow format, just like a PowerPoint presentation.",
+  "subparagraph": "Use the arrow keys or swipe left/right to navigate between slides.",
+  "links": [
+    {
+      "label": "<-Menu",
+      "href": "/menu"
+    }
+  ]
+},
     {
       "type": "Opener",
       "title": "Plog",
@@ -75,41 +117,10 @@
       ]
     },
     {
-      "type": "ParaSideImage",
-      "title": "About the Author",
-      "paragraph": "*Hey there!*\nI'm a _dumbass_ software engineer, who loves to learn.\nHere I will post my blogs :)\n\nTake care!\n\nFeel free to connect with me",
-      "image": "https://c.tenor.com/JPNdFiad9C8AAAAC/tenor.gif",
-      "links": [
-        {
-          "label": "LinkedIn",
-          "href": "https://www.linkedin.com/in/piyush-j-oshi/"
-        },
-        {
-          "label": "Github",
-          "href": "https://github.com/miteoshi"
-        }
-      ]
-    }
-  ],
-  "reactjs": [
-    {
       "type": "Opener",
-      "title": "dsad",
-      "paragraph": "dasdsa",
-      "subparagraph": "dasda"
-    },
-    {
-      "type": "Para",
-      "title": "dsada",
-      "paragraph": "dsada"
-    }
-  ],
-  "gg": [
-    {
-      "type": "Opener",
-      "title": "",
-      "paragraph": "",
-      "subparagraph": "SAsaS",
+      "title": "Docker Daily",
+      "paragraph": "A dialy diary on Docker",
+      "subparagraph": "By Piyush Joshi",
       "links": [
         {
           "label": "<- Menu",
@@ -117,5 +128,6 @@
         }
       ]
     }
+
   ]
 }

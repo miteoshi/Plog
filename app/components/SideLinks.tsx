@@ -13,7 +13,7 @@ export function SlideLinks({
             href={link.href}
             target={link.href.startsWith("http") ? "_blank" : "_self"}
             rel="noopener noreferrer"
-            className="text-base sm:text-md text-blue-300 leading-relaxed"
+            className="text-base sm:text-md text-blue-300 leading-relaxed no-pointer-events"
           >
             {link.label}
           </a>
