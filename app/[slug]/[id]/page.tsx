@@ -1,9 +1,20 @@
+import fs from "fs/promises";
+import path from "path";
+import Slide from "@/components/Slide";
+import { SlideContent } from "@/type";
 
-import { blogsData } from "@/app/data/blogs";
-import Slide from "@/app/components/Slide";
-import { SlideContent } from "@/app/type";
+const BLOGS_JSON_PATH = path.join(process.cwd(), "app", "data", "blogs.json");
 
-const dataSources: Record<string, SlideContent[]> = blogsData
+// Function to fetch blog data dynamically
+async function getBlogsData(): Promise<Record<string, SlideContent[]>> {
+  try {
+    const fileContent = await fs.readFile(BLOGS_JSON_PATH, "utf-8");
+    return JSON.parse(fileContent);
+  } catch (error) {
+    console.error("Error reading blogs.json:", error);
+    return {}; // Return empty object if file read fails
+  }
+}
 
 interface Params {
   slug: string;
@@ -18,6 +29,7 @@ export default async function SlidePage({
   const { slug, id } = await params;
   const slideId = parseInt(id, 10);
 
+  const dataSources = await getBlogsData();
   const slidesData = dataSources[slug] ?? [];
 
   if (slideId < 1 || slideId > slidesData.length) {
@@ -25,17 +37,17 @@ export default async function SlidePage({
   }
 
   return (
-    
     <Slide
       content={slidesData[slideId - 1]}
       id={slideId}
       totalSlides={slidesData.length}
     />
-    
   );
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const dataSources = await getBlogsData();
+
   const paths = Object.keys(dataSources).flatMap((slug) =>
     dataSources[slug].map((_, index) => ({
       slug,
