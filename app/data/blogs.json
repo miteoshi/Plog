@@ -7,8 +7,8 @@
       "subparagraph": "By Piyush Joshi",
       "links": [
         {
-          "label": "Go to menu",
-          "href": "/menu/1"
+          "label": "<- Menu",
+          "href": "/menu"
         }
       ]
     },
@@ -69,8 +69,8 @@
       "subparagraph": "Use arrow keys or tap left/right to navigate slides.",
       "links": [
         {
-          "label": "Explore",
-          "href": "/menu/1"
+          "label": "<- Menu",
+          "href": "/menu"
         }
       ]
     },
@@ -91,28 +91,29 @@
       ]
     }
   ],
-  "menu": [
+  "reactjs": [
     {
       "type": "Opener",
-      "title": "Docker Daily",
-      "paragraph": "Learn about isloation and depression with me 🐋",
-      "subparagraph": "Use arrow keys or tap left/right to navigate slides.",
-      "links": [
-        {
-          "label": "Go through",
-          "href": "/docker/1"
-        }
-      ]
+      "title": "dsad",
+      "paragraph": "dasdsa",
+      "subparagraph": "dasda"
     },
     {
+      "type": "Para",
+      "title": "dsada",
+      "paragraph": "dsada"
+    }
+  ],
+  "gg": [
+    {
       "type": "Opener",
-      "title": "Plog: Minimal Blog",
-      "paragraph": "You're using it currently",
-      "subparagraph": "Use arrow keys or tap left/right to navigate slides.",
+      "title": "",
+      "paragraph": "",
+      "subparagraph": "SAsaS",
       "links": [
         {
-          "label": "Go through",
-          "href": "/about/1"
+          "label": "<- Menu",
+          "href": "/menu"
         }
       ]
     }

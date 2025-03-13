@@ -8,13 +8,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlusCircle, Trash2, Save } from "lucide-react";
 import { SlideEditor } from "@/components/slide-editor";
 import { getBlog, updateBlog } from "@/lib/actions";
+import { notFound } from "next/navigation";
 import type { BlogData, SlideContent } from "@/type";
+import { restrictInProduction } from "@/lib/restrict";
 
 export default function EditBlogPage({
   params,
 }: {
   params: Promise<{ key: string }>;
 }) {
+  restrictInProduction();
+
   const router = useRouter();
   const [key, setKey] = useState<string | null>(null);
   const [slides, setSlides] = useState<SlideContent[]>([]);
@@ -69,8 +73,12 @@ export default function EditBlogPage({
   };
 
   const removeSlide = (index: number) => {
-    const newSlides = [...slides];
-    newSlides.splice(index, 1);
+    if (slides.length === 1) {
+      alert("You must have at least one slide.");
+      return;
+    }
+
+    const newSlides = slides.filter((_, i) => i !== index);
     setSlides(newSlides);
   };
 
@@ -95,18 +103,28 @@ export default function EditBlogPage({
 
     if (!key) return;
 
+    const openerSlide = slides.find((slide) => slide.type === "Opener");
+    const otherSlides = slides.filter((slide) => slide.type !== "Opener");
+
+    if (!openerSlide) {
+      alert("There must be exactly one Opener slide.");
+      return;
+    }
+
     if (slides.length === 0) {
       alert("Please add at least one slide");
       return;
     }
 
-    // Validate all image URLs
     if (!validateTenorUrls(slides)) {
       return;
     }
 
+    // Ensure Opener is always first
+    const sortedSlides = [openerSlide, ...otherSlides];
+
     const blogData: BlogData = {
-      [key]: slides,
+      [key]: sortedSlides,
     };
 
     try {
@@ -146,6 +164,7 @@ export default function EditBlogPage({
             </CardHeader>
             <CardContent>
               <SlideEditor
+                hasOpener={slides.some((s) => s.type === "Opener")}
                 slide={slide}
                 onChange={(updatedSlide) => updateSlide(index, updatedSlide)}
               />

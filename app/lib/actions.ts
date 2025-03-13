@@ -59,6 +59,9 @@ export async function updateBlog(
   blogData: BlogData
 ): Promise<void> {
   try {
+    if(key === "about" || key === "menu"){
+      throw new Error(`The "about" page cannot be modified`);
+    }
     const blogs = await getBlogs();
 
     if (!blogs[key]) {
@@ -80,7 +83,11 @@ export async function updateBlog(
 // Delete a blog
 export async function deleteBlog(key: string): Promise<void> {
   try {
+    if(key === "about" || key === "menu"){
+      throw new Error(`How dare you (in mysterious voice). It's about Plog`);
+    }
     const blogs = await getBlogs();
+
 
     if (!blogs[key]) {
       throw new Error(`Blog with key "${key}" not found`);

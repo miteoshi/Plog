@@ -1,49 +1,65 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Edit, Trash2, Eye } from "lucide-react"
-import { getBlogs, deleteBlog } from "@/lib/actions"
-import type { BlogsData } from "../type"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Edit, Trash2, Eye } from "lucide-react";
+import { getBlogs, deleteBlog } from "@/lib/actions";
+import type { BlogsData } from "../type";
+import { restrictInProduction } from "@/lib/restrict";
+
+
 
 export default function ManageBlogsPage() {
-  const [blogs, setBlogs] = useState<BlogsData>({})
-  const [loading, setLoading] = useState(true)
+   restrictInProduction();
+
+  const [blogs, setBlogs] = useState<BlogsData>({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const blogsData = await getBlogs()
-        setBlogs(blogsData)
+        const blogsData = await getBlogs();
+        setBlogs(blogsData);
       } catch (error) {
-        console.error("Error fetching blogs:", error)
+        console.error("Error fetching blogs:", error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchBlogs()
-  }, [])
+    fetchBlogs();
+  }, []);
 
   const handleDelete = async (blogKey: string) => {
     if (confirm(`Are you sure you want to delete the "${blogKey}" blog?`)) {
       try {
-        await deleteBlog(blogKey)
+        await deleteBlog(blogKey);
         // Remove from local state
-        const updatedBlogs = { ...blogs }
-        delete updatedBlogs[blogKey]
-        setBlogs(updatedBlogs)
+        const updatedBlogs = { ...blogs };
+        delete updatedBlogs[blogKey];
+        setBlogs(updatedBlogs);
       } catch (error) {
-        console.error("Error deleting blog:", error)
-        alert("Failed to delete blog. Please try again.")
+        console.error("Error deleting blog:", error);
+        alert("Failed to delete blog. Please try again.");
       }
     }
-  }
+  };
 
   if (loading) {
-    return <div className="container mx-auto py-12 text-center">Loading blogs...</div>
+    return (
+      <div className="container mx-auto py-12 text-center">
+        Loading blogs...
+      </div>
+    );
   }
 
   return (
@@ -71,7 +87,9 @@ export default function ManageBlogsPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">{slides.length} slides</p>
-                <p className="mt-2">First slide: {slides[0]?.title || "No title"}</p>
+                <p className="mt-2">
+                  First slide: {slides[0]?.title || "No title"}
+                </p>
               </CardContent>
               <CardFooter className="flex justify-between">
                 <div className="flex gap-2">
@@ -88,7 +106,11 @@ export default function ManageBlogsPage() {
                     </Link>
                   </Button>
                 </div>
-                <Button variant="destructive" size="sm" onClick={() => handleDelete(key)}>
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  onClick={() => handleDelete(key)}
+                >
                   <Trash2 className="mr-2 h-4 w-4" />
                   Delete
                 </Button>
@@ -98,6 +120,5 @@ export default function ManageBlogsPage() {
         </div>
       )}
     </div>
-  )
+  );
 }
-

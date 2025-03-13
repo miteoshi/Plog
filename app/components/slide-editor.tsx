@@ -17,12 +17,15 @@ import type { SlideContent } from "@/type";
 interface SlideEditorProps {
   slide: SlideContent;
   onChange: (slide: SlideContent) => void;
+  hasOpener: boolean;
 }
 
-export function SlideEditor({ slide, onChange }: SlideEditorProps) {
+export function SlideEditor({ slide, onChange, hasOpener }: SlideEditorProps) {
   const [showTenorSearch, setShowTenorSearch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState<string[]>([]);
+
+  
 
   const handleTypeChange = (type: string) => {
     // Create a new slide with the selected type and preserve common fields
@@ -159,7 +162,9 @@ export function SlideEditor({ slide, onChange }: SlideEditorProps) {
             <SelectValue placeholder="Select slide type" />
           </SelectTrigger>
           <SelectContent className="bg-black text-white">
-            <SelectItem value="Opener">Opener</SelectItem>
+            <SelectItem value="Opener" disabled={hasOpener}>
+              Opener
+            </SelectItem>
             <SelectItem value="Para">Paragraph</SelectItem>
             <SelectItem value="ParaSideImage">
               Paragraph with Side Image
@@ -201,7 +206,7 @@ export function SlideEditor({ slide, onChange }: SlideEditorProps) {
             id="subparagraph"
             value={slide.subparagraph || ""}
             onChange={(e) => handleChange("subparagraph", e.target.value)}
-            placeholder="Additional information (shown below main paragraph)"
+            placeholder="Additional information (shown below main paragraph) (Swipe left or tap on right to start)"
             rows={2}
           />
         </div>

@@ -12,8 +12,12 @@ import { PlusCircle, Trash2, Save } from "lucide-react";
 import { SlideEditor } from "@/components/slide-editor";
 import { createBlog } from "@/lib/actions";
 import type { BlogData, SlideContent } from "@/type";
+import { restrictInProduction } from "@/lib/restrict";
 
 export default function CreateBlogPage() {
+
+  restrictInProduction();
+
   const router = useRouter();
   const [blogKey, setBlogKey] = useState("");
   const [slides, setSlides] = useState<SlideContent[]>([
@@ -22,26 +26,36 @@ export default function CreateBlogPage() {
       title: "",
       paragraph: "",
       subparagraph: "",
-      links: [{ label: "Go to menu", href: "/menu/1" }],
+      links: [{ label: "Go to menu", href: "/menu" }],
     },
   ]);
 
-  const addSlide = () => {
-    setSlides([
-      ...slides,
-      {
-        type: "Para",
-        title: "",
-        paragraph: "",
-      },
-    ]);
-  };
+const addSlide = () => {
+  // Check if there's already an "Opener" slide
+  const hasOpener = slides.some((slide) => slide.type === "Opener");
 
-  const removeSlide = (index: number) => {
-    const newSlides = [...slides];
-    newSlides.splice(index, 1);
-    setSlides(newSlides);
-  };
+  setSlides([
+    ...slides,
+    {
+      type: hasOpener ? "Para" : "Opener", // Only the first slide can be an Opener
+      title: "",
+      paragraph: "",
+      subparagraph: hasOpener ? undefined : "",
+      links: hasOpener ? undefined : [{ label: "Go to menu", href: "/menu" }],
+    },
+  ]);
+};
+
+
+const removeSlide = (index: number) => {
+  if (slides.length === 1) {
+    alert("You must have at least one slide.");
+    return;
+  }
+
+  const newSlides = slides.filter((_, i) => i !== index);
+  setSlides(newSlides);
+};
 
   const updateSlide = (index: number, updatedSlide: SlideContent) => {
     const newSlides = [...slides];
@@ -59,36 +73,48 @@ export default function CreateBlogPage() {
     return true;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    if (!blogKey.trim()) {
-      alert("Please enter a blog key");
-      return;
-    }
+  if (!blogKey.trim()) {
+    alert("Please enter a blog key");
+    return;
+  }
 
-    if (slides.length === 0) {
-      alert("Please add at least one slide");
-      return;
-    }
+  if (slides.length === 0) {
+    alert("Please add at least one slide");
+    return;
+  }
 
-    // Validate all image URLs
-    if (!validateTenorUrls(slides)) {
-      return;
-    }
+  if (!validateTenorUrls(slides)) {
+    return;
+  }
 
-    const blogData: BlogData = {
-      [blogKey]: slides,
-    };
+  // Ensure the "Opener" slide is always first
+  const openerSlide = slides.find((slide) => slide.type === "Opener");
+  const otherSlides = slides.filter((slide) => slide.type !== "Opener");
 
-    try {
-      await createBlog(blogData);
-      router.push("/manage");
-    } catch (error) {
-      console.error("Error saving blog:", error);
-      alert("Failed to save blog. Please try again.");
-    }
+  if (!openerSlide) {
+    alert("There must be exactly one Opener slide.");
+    return;
+  }
+
+  const sortedSlides = [openerSlide, ...otherSlides];
+
+  const blogData: BlogData = {
+    [blogKey]: sortedSlides,
   };
+
+  try {
+    await createBlog(blogData);
+    router.push("/manage");
+  } catch (error) {
+    console.error("Error saving blog:", error);
+    alert("Failed to save blog. Please try again.");
+  }
+};
+
+
 
   return (
     <div className="container mx-auto py-8 max-w-5xl">
@@ -137,6 +163,7 @@ export default function CreateBlogPage() {
             <CardContent>
               <SlideEditor
                 slide={slide}
+                hasOpener={slides.some(s => s.type === "Opener")}
                 onChange={(updatedSlide) => updateSlide(index, updatedSlide)}
               />
             </CardContent>
