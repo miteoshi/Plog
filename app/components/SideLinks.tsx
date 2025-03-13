@@ -9,14 +9,14 @@ export function SlideLinks({
     <div className="mt-4">
       {links.map((link, index) => (
         <span key={index} className="inline-block">
-          <a
+          <Link
             href={link.href}
             target={link.href.startsWith("http") ? "_blank" : "_self"}
             rel="noopener noreferrer"
             className="text-base sm:text-md text-blue-300 leading-relaxed no-pointer-events"
           >
             {link.label}
-          </a>
+          </Link>
           {index < links.length - 1 && (
             <span className="mx-2 text-gray-400">|</span>
           )}
