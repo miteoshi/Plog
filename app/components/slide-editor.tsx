@@ -165,7 +165,7 @@ export function SlideEditor({ slide, onChange, hasOpener }: SlideEditorProps) {
             <SelectItem value="Opener" disabled={hasOpener}>
               Opener
             </SelectItem>
-            <SelectItem value="Para">Paragraph</SelectItem>
+            <SelectItem value="Para">Markdown</SelectItem>
             <SelectItem value="ParaSideImage">
               Paragraph with Side Image
             </SelectItem>
@@ -181,12 +181,12 @@ export function SlideEditor({ slide, onChange, hasOpener }: SlideEditorProps) {
           id="title"
           value={slide.title || ""}
           onChange={(e) => handleChange("title", e.target.value)}
-          placeholder="Slide title"
+          placeholder="Slide title (Optional)"
         />
       </div>
 
       <div className="grid gap-2">
-        <Label htmlFor="paragraph">Paragraph</Label>
+        <Label htmlFor="paragraph">Markdown</Label>
         <Textarea
           id="paragraph"
           value={slide.paragraph || ""}

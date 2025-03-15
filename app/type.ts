@@ -23,6 +23,7 @@ export interface BlogsData {
   [key: string]: SlideContent[];
 }
 
-export interface BlogData {
-  [key: string]: SlideContent[];
+export interface BlogItem {
+  key: string;
+  data: BlogsData;
 }

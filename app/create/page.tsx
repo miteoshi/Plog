@@ -106,7 +106,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   };
 
   try {
-    await createBlog(blogData);
+    await createBlog(blogKey,blogData);
     router.push("/manage");
   } catch (error) {
     console.error("Error saving blog:", error);
@@ -133,7 +133,9 @@ const handleSubmit = async (e: React.FormEvent) => {
                   id="blogKey"
                   placeholder="e.g., docker, react, nextjs"
                   value={blogKey}
-                  onChange={(e) => setBlogKey(e.target.value)}
+                  onChange={(e) =>
+                    setBlogKey(e.target.value.replace(/\s+/g, "-"))
+                  }
                   required
                 />
                 <p className="text-sm text-muted-foreground">
@@ -163,7 +165,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             <CardContent>
               <SlideEditor
                 slide={slide}
-                hasOpener={slides.some(s => s.type === "Opener")}
+                hasOpener={slides.some((s) => s.type === "Opener")}
                 onChange={(updatedSlide) => updateSlide(index, updatedSlide)}
               />
             </CardContent>

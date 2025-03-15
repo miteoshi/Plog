@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import BeamsBackground from "./BeamsBackground";
 import type { SlideContent } from "../type";
 import { Para } from "./Para";
@@ -24,42 +24,38 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
   const [isNavigationEnabled, setIsNavigationEnabled] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
-  const handleNavigation = (newPath: string | number) => {
-    if (typeof newPath === "string") {
-      router.replace(newPath);
-    } else {
-      const newUrl = `${pathname.split("/").slice(0, -1).join("/")}/${newPath}`;
-      router.replace(newUrl);
-    }
+  const basePath = useMemo(
+    () => pathname.split("/").slice(0, -1).join("/"),
+    [pathname]
+  );
+
+  const handleNavigation = (newPath: number) => {
+    const newSlideId =
+      newPath > totalSlides ? 1 : newPath < 1 ? totalSlides : newPath;
+    router.replace(`${basePath}/${newSlideId}`);
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (!isNavigationEnabled) return;
-    if (event.key === "ArrowRight" && id < totalSlides) {
-      handleNavigation(id + 1);
-    } else if (event.key === "ArrowLeft" && id > 1) {
-      handleNavigation(id - 1);
+    switch (event.key) {
+      case "ArrowRight":
+        handleNavigation(id + 1);
+        break;
+      case "ArrowLeft":
+        handleNavigation(id - 1);
+        break;
     }
   };
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-     if (e.target instanceof HTMLAnchorElement) {
-       return;
-     }
-    if (!isNavigationEnabled) return;
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-     if (e.target instanceof HTMLAnchorElement) {
-       return;
-     }
-    if (!isNavigationEnabled) return;
-    touchEndX.current = e.touches[0].clientX;
+  const handleTouch = (
+    e: React.TouchEvent<HTMLDivElement>,
+    isStart: boolean
+  ) => {
+    if (e.target instanceof HTMLAnchorElement || !isNavigationEnabled) return;
+    (isStart ? touchStartX : touchEndX).current = e.touches[0].clientX;
   };
 
   const handleTouchEnd = () => {
-    
     if (
       !isNavigationEnabled ||
       touchStartX.current === null ||
@@ -69,70 +65,57 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
     const swipeDistance = touchStartX.current - touchEndX.current;
     const minSwipeDistance = 150;
 
-    // 🔹 Swipe LEFT (←) → Go to NEXT slide
-    if (swipeDistance > minSwipeDistance && id < totalSlides) {
-      handleNavigation(id + 1);
-    }
-    // 🔹 Swipe RIGHT (→) → Go to PREVIOUS slide
-    else if (swipeDistance < -minSwipeDistance && id > 1) {
-      handleNavigation(id - 1);
-    }
+    if (swipeDistance > minSwipeDistance) handleNavigation(id + 1);
+    else if (swipeDistance < -minSwipeDistance) handleNavigation(id - 1);
 
     touchStartX.current = null;
     touchEndX.current = null;
   };
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-     if (e.target instanceof HTMLAnchorElement) {
-       return;
-     }
-    if (!isNavigationEnabled) return;
+    if (e.target instanceof HTMLAnchorElement || !isNavigationEnabled) return;
     const { clientX, currentTarget } = e;
     const halfWidth = currentTarget.clientWidth / 2;
-    if (clientX < halfWidth && id > 1) {
-      handleNavigation(id - 1);
-    } else if (clientX >= halfWidth && id < totalSlides) {
-      handleNavigation(id + 1);
-    }
+    handleNavigation(clientX < halfWidth ? id - 1 : id + 1);
   };
 
   const toggleNavigation = () => {
     setIsNavigationEnabled((prev) => !prev);
     if (isNavigationEnabled) {
       setShowInfo(true);
-      setTimeout(() => setShowInfo(false), 3000); // Hide after 3 seconds
+      setTimeout(() => setShowInfo(false), 3000);
     }
   };
 
-  // Prefetch the next slide when the component loads
   useEffect(() => {
     if (id < totalSlides) {
-      const nextSlideUrl = `${pathname.split("/").slice(0, -1).join("/")}/${
-        id + 1
-      }`;
-      router.prefetch(nextSlideUrl);
+      router.prefetch(`${basePath}/${id + 1}`);
     }
-  }, [id, totalSlides, router, pathname]);
+  }, [id, totalSlides, router, basePath]);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isNavigationEnabled]);
+  }, [id, isNavigationEnabled]);
+
+  const MemoizedSlideContent = useMemo(
+    () => <SlideContentRenderer content={content} />,
+    [content]
+  );
 
   return (
     <div className="relative w-full h-[calc(100vh-48px)] flex flex-col justify-center items-center">
       <div
         className="absolute inset-0 z-10"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
+        onTouchStart={(e) => handleTouch(e, true)}
+        onTouchMove={(e) => handleTouch(e, false)}
         onTouchEnd={handleTouchEnd}
         onClick={handleClick}
       >
-        <SlideContentRenderer content={content} />
+        {MemoizedSlideContent}
 
-        {/* Info Box (Appears when swipe is disabled) */}
         {showInfo && (
           <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-white text-black px-4 py-2 rounded-md text-sm transition-opacity duration-500 animate-fade">
             Now you can copy the content
@@ -160,7 +143,6 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
   );
 }
 
-// Renders different slide types
 function SlideContentRenderer({ content }: { content: SlideContent }) {
   switch (content.type) {
     case "ImagePara":

@@ -1,34 +1,4 @@
 {
-  "about": [
-    {
-      "type": "Opener",
-      "title": "Plog",
-      "paragraph": "A minimalistic blog site.",
-      "subparagraph": "Use arrow keys or tap left/right to navigate slides.",
-      "links": [
-        {
-          "label": "<- Read Blogs",
-          "href": "/menu"
-        }
-      ]
-    },
-    {
-      "type": "ParaSideImage",
-      "title": "About the Author",
-      "paragraph": "*Hey there!*\nI'm a _dumbass_ software engineer, who loves to learn.\nHere I will post my blogs :)\n\nTake care!\n\nFeel free to connect with me",
-      "image": "https://c.tenor.com/JPNdFiad9C8AAAAC/tenor.gif",
-      "links": [
-        {
-          "label": "LinkedIn",
-          "href": "https://www.linkedin.com/in/piyush-j-oshi/"
-        },
-        {
-          "label": "Github",
-          "href": "https://github.com/miteoshi"
-        }
-      ]
-    }
-  ],
   "docker": [
     {
       "type": "Opener",
@@ -80,6 +50,10 @@
         {
           "codeparagraph": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\n\nThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
           "code": "const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));\n\nasync function example() {\n  console.log('Start');\n  await delay(2000);\n  console.log('After 2 seconds');\n}\n\nexample();"
+        },
+        {
+          "codeparagraph": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin",
+          "code": "const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));\n\nasync function example() {\n  console.log('Start');\n  await delay(2000);\n  console.log('After 2 seconds');\n}"
         }
       ],
       "image": "https://c.tenor.com/QaDAVbWJYj0AAAAd/tenor.gif",
@@ -90,44 +64,5 @@
         }
       ]
     }
-  ],
-  "w":[
-{
-  "type": "Opener",
-  "title": "Slide View",
-  "paragraph": "Browse through various blogs in a slideshow format, just like a PowerPoint presentation.",
-  "subparagraph": "Use the arrow keys or swipe left/right to navigate between slides.",
-  "links": [
-    {
-      "label": "<-Menu",
-      "href": "/menu"
-    }
-  ]
-},
-    {
-      "type": "Opener",
-      "title": "Plog",
-      "paragraph": "A minimalistic blog site.",
-      "subparagraph": "Use arrow keys or tap left/right to navigate slides.",
-      "links": [
-        {
-          "label": "<- Menu",
-          "href": "/menu"
-        }
-      ]
-    },
-    {
-      "type": "Opener",
-      "title": "Docker Daily",
-      "paragraph": "A dialy diary on Docker",
-      "subparagraph": "By Piyush Joshi",
-      "links": [
-        {
-          "label": "<- Menu",
-          "href": "/menu"
-        }
-      ]
-    }
-
   ]
 }

@@ -1,0 +1,40 @@
+{"slide-menu":[
+{
+  "type": "Opener",
+  "title": "Slide View",
+  "paragraph": "Browse through various blogs in a slideshow format, just like a PowerPoint presentation.",
+  "subparagraph": "Use the arrow keys or swipe left/right to navigate between slides.",
+  "links": [
+    {
+      "label": "<-Menu",
+      "href": "/menu"
+    }
+  ]
+},
+    {
+      "type": "Opener",
+      "title": "Plog",
+      "paragraph": "A minimalistic blog site.",
+      "subparagraph": "Use arrow keys or tap left/right to navigate slides.",
+      "links": [
+        {
+          "label": "<- Menu",
+          "href": "/menu"
+        }
+      ]
+    },
+    {
+      "type": "Opener",
+      "title": "Docker Daily",
+      "paragraph": "A dialy diary on Docker",
+      "subparagraph": "By Piyush Joshi",
+      "links": [
+        {
+          "label": "<- Menu",
+          "href": "/menu"
+        }
+      ]
+    }
+
+  ]
+}

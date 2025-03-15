@@ -1,0 +1,31 @@
+  {"about": [
+    {
+      "type": "Opener",
+      "title": "Plog",
+      "paragraph": "A minimalistic blog site.",
+      "subparagraph": "Use arrow keys or tap left/right to navigate slides.",
+      "links": [
+        {
+          "label": "<- Read Blogs",
+          "href": "/menu"
+        }
+      ]
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "About the Author",
+      "paragraph": "*Hey there!*\nI'm a _dumbass_ software engineer, who loves to learn.\nHere I will post my blogs :)\n\nTake care!\n\nFeel free to connect with me",
+      "image": "https://c.tenor.com/JPNdFiad9C8AAAAC/tenor.gif",
+      "links": [
+        {
+          "label": "LinkedIn",
+          "href": "https://www.linkedin.com/in/piyush-j-oshi/"
+        },
+        {
+          "label": "Github",
+          "href": "https://github.com/miteoshi"
+        }
+      ]
+    }
+  ]
+}

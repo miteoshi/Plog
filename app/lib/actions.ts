@@ -2,51 +2,60 @@
 
 import fs from "fs/promises";
 import path from "path";
-import type { BlogsData, BlogData } from "@/type";
+import type { BlogData } from "@/type";
 
-const BLOG_JSON_PATH = "./app/data/blogs.json";
+const BLOGS_DIR = "./app/data/blogs"; // Directory to store individual JSON files
 
-// Read blogs data from JSON file
-export async function getBlogs(): Promise<BlogsData> {
+// Ensure the blogs directory exists
+async function ensureBlogDirExists() {
   try {
-    const fileContent = await fs.readFile(BLOG_JSON_PATH, "utf-8");
-    return JSON.parse(fileContent);
+    await fs.mkdir(BLOGS_DIR, { recursive: true });
   } catch (error) {
-    console.error("Error reading blogs.json:", error);
-    return {};
+    console.error("Error ensuring blogs directory exists:", error);
+  }
+}
+
+// Get all blogs (returns a list of blog filenames)
+export async function getBlogs(): Promise<string[]> {
+  try {
+    await ensureBlogDirExists();
+    const files = await fs.readdir(BLOGS_DIR);
+    return files.map((file) => file.replace(".json", "")); // Remove ".json" extension
+  } catch (error) {
+    console.error("Error reading blogs directory:", error);
+    return [];
   }
 }
 
 // Get a specific blog by key
-export async function getBlog(key: string): Promise<BlogData> {
+export async function getBlog(key: string): Promise<BlogData | null> {
   try {
-    const blogs = await getBlogs();
-    if (!blogs[key]) {
-      return {};
-    }
-    return { [key]: blogs[key] };
+    const filePath = path.join(BLOGS_DIR, `${key}.json`);
+    const fileContent = await fs.readFile(filePath, "utf-8");
+    return JSON.parse(fileContent);
   } catch (error) {
-    console.error(`Error getting blog ${key}:`, error);
-    throw new Error(`Failed to get blog ${key}`);
+    console.error(`Error reading blog ${key}:`, error);
+    return null;
   }
 }
 
 // Create a new blog
-export async function createBlog(blogData: BlogData): Promise<void> {
+export async function createBlog(
+  key: string,
+  blogData: BlogData
+): Promise<void> {
   try {
-    const blogs = await getBlogs();
-    const blogKey = Object.keys(blogData)[0];
+    await ensureBlogDirExists();
+    const filePath = path.join(BLOGS_DIR, `${key}.json`);
 
-    if (blogs[blogKey]) {
-      throw new Error(`Blog with key "${blogKey}" already exists`);
-    }
+    // Check if the blog already exists
+    try {
+      await fs.access(filePath);
+      throw new Error(`Blog with key "${key}" already exists`);
+    } catch {}
 
-    const updatedBlogs = {
-      ...blogs,
-      ...blogData,
-    };
-
-    await updateBlogsFile(updatedBlogs);
+    const formattedData = JSON.stringify(blogData, null, 2);
+    await fs.writeFile(filePath, formattedData, "utf-8");
   } catch (error) {
     console.error("Error creating blog:", error);
     throw new Error("Failed to create blog");
@@ -59,21 +68,17 @@ export async function updateBlog(
   blogData: BlogData
 ): Promise<void> {
   try {
-    if(key === "about" || key === "menu"){
-      throw new Error(`The "about" page cannot be modified`);
-    }
-    const blogs = await getBlogs();
+    const filePath = path.join(BLOGS_DIR, `${key}.json`);
 
-    if (!blogs[key]) {
+    // Ensure the blog exists before updating
+    try {
+      await fs.access(filePath);
+    } catch {
       throw new Error(`Blog with key "${key}" not found`);
     }
 
-    const updatedBlogs = {
-      ...blogs,
-      [key]: blogData[key], // Ensure only updating the specific blog
-    };
-
-    await updateBlogsFile(updatedBlogs);
+    const formattedData = JSON.stringify(blogData, null, 2);
+    await fs.writeFile(filePath, formattedData, "utf-8");
   } catch (error) {
     console.error(`Error updating blog ${key}:`, error);
     throw new Error(`Failed to update blog ${key}`);
@@ -83,32 +88,22 @@ export async function updateBlog(
 // Delete a blog
 export async function deleteBlog(key: string): Promise<void> {
   try {
-    if(key === "about" || key === "menu"){
-      throw new Error(`How dare you (in mysterious voice). It's about Plog`);
+    if (key === "about" || key === "menu") {
+      throw new Error(`Cannot delete "${key}" blog`);
     }
-    const blogs = await getBlogs();
 
+    const filePath = path.join(BLOGS_DIR, `${key}.json`);
 
-    if (!blogs[key]) {
+    // Ensure the blog exists before deleting
+    try {
+      await fs.access(filePath);
+    } catch {
       throw new Error(`Blog with key "${key}" not found`);
     }
 
-    delete blogs[key];
-
-    await updateBlogsFile(blogs);
+    await fs.unlink(filePath);
   } catch (error) {
     console.error(`Error deleting blog ${key}:`, error);
     throw new Error(`Failed to delete blog ${key}`);
-  }
-}
-
-// Helper function to update the blogs.json file
-async function updateBlogsFile(blogsData: BlogsData): Promise<void> {
-  try {
-    const formattedBlogsData = JSON.stringify(blogsData, null, 2);
-    await fs.writeFile(BLOG_JSON_PATH, formattedBlogsData, "utf-8");
-  } catch (error) {
-    console.error("Error updating blogs.json file:", error);
-    throw new Error("Failed to update blogs.json file");
   }
 }
