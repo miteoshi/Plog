@@ -9,7 +9,7 @@ import { PlusCircle, Trash2, Save } from "lucide-react";
 import { SlideEditor } from "@/components/slide-editor";
 import { getBlog, updateBlog } from "@/lib/actions";
 import { notFound } from "next/navigation";
-import type { BlogData, SlideContent } from "@/type";
+import type { BlogsData, SlideContent } from "@/type";
 import { restrictInProduction } from "@/lib/restrict";
 
 export default function EditBlogPage({
@@ -123,7 +123,7 @@ restrictInProduction();
     // Ensure Opener is always first
     const sortedSlides = [openerSlide, ...otherSlides];
 
-    const blogData: BlogData = {
+    const blogData: BlogsData = {
       [key]: sortedSlides,
     };
 

@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlusCircle, Trash2, Save } from "lucide-react";
 import { SlideEditor } from "@/components/slide-editor";
 import { createBlog } from "@/lib/actions";
-import type { BlogData, SlideContent } from "@/type";
+import type { BlogsData, SlideContent } from "@/type";
 import { restrictInProduction } from "@/lib/restrict";
 
 export default function CreateBlogPage() {
@@ -101,7 +101,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
   const sortedSlides = [openerSlide, ...otherSlides];
 
-  const blogData: BlogData = {
+  const blogData: BlogsData = {
     [blogKey]: sortedSlides,
   };
 

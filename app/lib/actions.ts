@@ -2,7 +2,7 @@
 
 import fs from "fs/promises";
 import path from "path";
-import type { BlogData } from "@/type";
+import type { BlogsData } from "@/type";
 
 const BLOGS_DIR = "./app/data/blogs"; // Directory to store individual JSON files
 
@@ -28,7 +28,7 @@ export async function getBlogs(): Promise<string[]> {
 }
 
 // Get a specific blog by key
-export async function getBlog(key: string): Promise<BlogData | null> {
+export async function getBlog(key: string): Promise<BlogsData | null> {
   try {
     const filePath = path.join(BLOGS_DIR, `${key}.json`);
     const fileContent = await fs.readFile(filePath, "utf-8");
@@ -42,7 +42,7 @@ export async function getBlog(key: string): Promise<BlogData | null> {
 // Create a new blog
 export async function createBlog(
   key: string,
-  blogData: BlogData
+  blogData: BlogsData
 ): Promise<void> {
   try {
     await ensureBlogDirExists();
@@ -65,7 +65,7 @@ export async function createBlog(
 // Update an existing blog
 export async function updateBlog(
   key: string,
-  blogData: BlogData
+  blogData: BlogsData
 ): Promise<void> {
   try {
     const filePath = path.join(BLOGS_DIR, `${key}.json`);
