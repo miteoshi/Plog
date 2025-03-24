@@ -43,11 +43,11 @@ const blogs: BlogEntry[] = await Promise.all(
               blogs.map(({ key, paragraph, title }) => (
                 <div key={key} className="p-4">
                   <Link href={`/${key}/1`}>
-                    <h2 className="text-2xl font-bold text-gray-300 cursor-pointer hover:underline">
+                    <h2 className="text-2xl font-bold text-white cursor-pointer hover:underline">
                       {title}
                     </h2>
                   </Link>
-                  <p className="text-sm text-gray-300 opacity-75">
+                  <p className="text-sm text-gray-100 opacity-75">
                     {paragraph}
                   </p>
                 </div>
