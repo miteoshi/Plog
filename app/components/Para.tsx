@@ -7,7 +7,7 @@ export function Para({ content }: { content: SlideContent }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6">
       <div className="max-w-2xl text-left">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-4">{content.title}</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold my-7">{content.title}</h2>
         <div className="prose text-base text-gray-400 leading-relaxed">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}

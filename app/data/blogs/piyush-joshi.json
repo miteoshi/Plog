@@ -1,0 +1,39 @@
+{
+  "piyush-joshi": [
+    {
+      "type": "Opener",
+      "title": "Piyush Joshi",
+      "paragraph": "Thanks for coming by.",
+      "subparagraph": "You can tap left/right or use your keyboard arrows to navigate.",
+      "links": [
+        {
+          "label": "<- Read Blogs",
+          "href": "/menu"
+        }
+      ]
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "Hello",
+      "paragraph": "I’m Piyush Joshi, a developer passionate about JavaScript, Next.js, AI, and cloud technologies. \n\nI graduated from Mumbai University with a computer science degree and a 9.3 GPA. I have always been passionate about application development.\n",
+      "image": "https://media.tenor.com/1G8D0kk1bMQAAAAi/anime-hello.gif"
+    },
+    {
+      "type": "Para",
+      "title": "Journey",
+      "paragraph": "After graduating, I started my career at **Accenture** as an [SAP ABAP](https://en.wikipedia.org/wiki/ABAP) Developer.  \n\nAfter a year, I transitioned internally to **React.js**, realizing that I was more interested in **Full Stack web development and cloud technologies** like **AWS and Docker** rather than [ERP](https://www.sap.com/india/products/erp/what-is-erp.html).  \n\nDuring my time as an ABAP developer, I built several programs for business operations, including a **transport zone management program**. \n\nLater, as a **React.js Developer**, I worked on a project for a major **U.S. commercial property and casualty insurance company**, where my responsibilities included **building new components and maintaining the site**.  \n"
+    },
+    {
+      "type": "Para",
+      "title": "Experience and Projects",
+      "paragraph": "### Data Migration from ECC to SAP S/4HANA (Client Project)\n\n**Tech Used:** [SAP ABAP](https://en.wikipedia.org/wiki/ABAP), [SAP Data Migration Cockpit](https://www.sap.com/documents/2017/07/26113ac0-c47c-0010-82c7-eda71af511fa.html), [Legacy System Migration Workbench](https://help.sap.com/doc/saphelp_nw73ehp1/7.31.19/en-US/4d/afeb6ad8f66d57e10000000a42189e/content.htm?no_cache=true), Business Application Programming Interface ([BAPI](https://help.sap.com/doc/saphelp_ewm900/9.0/en-US/48/5f9ba265c907dce10000000a42189d/content.htm?no_cache=true)), [SAP BODS (BusinessObjects Data Services)](https://www.sap.com/india/products/technology-platform/data-services.html)\n\n- **Led the migration process** from [SAP ECC](https://help.sap.com/docs/HANA_SMART_DATA_INTEGRATION/7952ef28a6914997abc01745fef1b607/80d06249caec450daa34ea753d2051b5.html) to [SAP S/4HANA](https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE), ensuring minimal downtime and data consistency.  \n- **Optimized ABAP object-oriented development**, reducing execution time for data transformation processes.  \n- **Automated large-scale data validation** using **BAPIs and LSMW**, improving accuracy and reducing manual effort.  \n- **Developed custom data extraction tools**, significantly improving efficiency for legacy system integration.  \n- **Resolved complex performance bottlenecks**, ensuring smooth production deployment with **zero critical errors**.  \n- **Developed ETL processes using SAP BODS**, handling **high-volume data transfers efficiently**. \n\n---\n\n### Website Maintenance (Client Project)  \n\n**Tech Used:** [React.js](https://react.dev/), [AWS](https://aws.amazon.com/), [GitLab](https://about.gitlab.com/).  \n\n- **Enhanced site performance and loading speed** by optimizing React components and lazy loading assets.  \n- **Developed and deployed new UI components**, improving user experience and accessibility.  \n- **Automated deployment pipelines using GitLab CI/CD**, reducing deployment time by **40%**.  \n- **Resolved production issues proactively**, preventing **downtime and critical bugs** in the live environment.  \n\n---\n\n### CVRP for Delivery of Disaster Relief Supplies (Final Year Project)  \n[Research Paper](https://www.ijnrd.org/papers/IJNRD2304236.pdf) | [Demonstration](https://www.youtube.com/watch?v=ef8UqXU6ofE)\n\n**Tech Used:** React.js, [Docker](https://www.docker.com/), [MongoDB](https://www.mongodb.com/).  \n\n- **Implemented Capacitated Vehicle Routing Problem ([CVRP](https://developers.google.com/optimization/routing/cvrp)) algorithms** to optimize delivery routes for relief supplies.  \n- **Built an interactive dashboard in React.js**\n- **Containerized the entire application using Docker**, ensuring portability and seamless deployment.  \n- **Designed a [NoSQL](https://cloud.google.com/discover/what-is-nosql) database (MongoDB) schema**\n- Uses [Google OR Library](https://developers.google.com/optimization) Algorithms for best routes  \n\n---\n\n### Baccner (Self Project)  \n\n**Tech Used:** React Native, [Firebase](https://firebase.google.com/?gad_source=1&gclid=Cj0KCQjwhYS_BhD2ARIsAJTMMQb_6zBQTwg530i-zbMdaVX2wQmsNYuM357qn_b9TDgp-vJl0yYkQCQaAvBlEALw_wcB&gclsrc=aw.ds).  \n\n- **Developed a barcode scanning app**, enabling automatic data entry into an **Excel sheet** with date stamps.  \n- **Used by Croma for a few weeks**, helping streamline **inventory management**.  \n- **Integrated Firebase for real-time data sync**, ensuring seamless multi-device access.  \n- **Designed an intuitive UI**, allowing users to scan products effortlessly with a mobile camera.  \n- **Reduced manual entry errors**, significantly improving **productivity and data accuracy**.  \n",
+      "image": "https://c.tenor.com/xijj0cxvFGwAAAAd/tenor.gif",
+      "links": [
+        {
+          "label": "Personal Projects",
+          "href": "https://github.com/miteoshi?tab=repositories"
+        }
+      ]
+    }
+  ]
+}

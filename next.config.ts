@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "media.tenor.com",
+      },
+      {
+        protocol: "https",
         hostname: "wgucfadukzconobkkbwd.supabase.co",
         pathname: "/storage/v1/object/public/images/**",
       },
