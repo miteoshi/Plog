@@ -40,7 +40,7 @@
       "image": "https://c.tenor.com/hWdX_AVcwlUAAAAC/tenor.gif"
     },
     {
-      "type": "ParaSideImage",
+      "type": "ImagePara",
       "title": "The Alternative : Hyper V",
       "paragraph": "A Full virtual machine (VM) solution.\n\nEnable Hyper V through powershell\n```\nEnable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All\n```\n\n[Hyper-V](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows-server) is Microsoft’s built-in hypervisor that allows Windows to run virtual machines (VMs). It works at the hardware level, meaning it can create completely isolated environments running separate operating systems.",
       "image": "https://c.tenor.com/8RDmq9fOGdwAAAAd/tenor.gif"
