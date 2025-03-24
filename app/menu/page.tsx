@@ -40,14 +40,16 @@ const blogs: BlogEntry[] = await Promise.all(
         <div className="relative h-full w-full overflow-y-auto scrollbar-hide flex justify-start p-8">
           <div className="flex flex-col text-left space-y-8 py-20">
             {blogs.length > 0 ? (
-              blogs.map(({ key, paragraph,title }) => (
+              blogs.map(({ key, paragraph, title }) => (
                 <div key={key} className="p-4">
                   <Link href={`/${key}/1`}>
-                    <h2 className="text-2xl font-bold cursor-pointer hover:underline">
+                    <h2 className="text-2xl font-bold text-gray-300 cursor-pointer hover:underline">
                       {title}
                     </h2>
                   </Link>
-                  <p className="text-sm opacity-75">{paragraph}</p>
+                  <p className="text-sm text-gray-300 opacity-75">
+                    {paragraph}
+                  </p>
                 </div>
               ))
             ) : (
