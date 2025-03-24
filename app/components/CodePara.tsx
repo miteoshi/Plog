@@ -57,7 +57,16 @@ export function CodePara({ content }: { content: SlideContent }) {
               th: ({ children }) => (
                 <th className="!text-gray-300">{children}</th>
               ),
-              a: ({ children }) => <a className="!text-blue-300">{children}</a>,
+              a: ({ children, href }) => (
+                <a
+                  href={href}
+                  className="!text-blue-300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {children}
+                </a>
+              ),
               strong: ({ children }) => (
                 <strong className="!text-gray-300">{children}</strong>
               ),

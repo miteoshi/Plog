@@ -88,15 +88,21 @@ restrictInProduction();
     setSlides(newSlides);
   };
 
-  const validateTenorUrls = (slides: SlideContent[]): boolean => {
-    for (const slide of slides) {
-      if (slide.image && !slide.image.includes("tenor.com")) {
-        alert("Only tenor.com image URLs are allowed");
-        return false;
-      }
+
+const validateTenorUrls = (slides: SlideContent[]): boolean => {
+  for (const slide of slides) {
+    if (
+      slide.image &&
+      !slide.image.includes("tenor.com") &&
+      !slide.image.includes("wgucfadukzconobkkbwd.supabase.co")
+    ) {
+      alert("Only images from Tenor.com are allowed");
+      return false;
     }
-    return true;
-  };
+  }
+  return true;
+};
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

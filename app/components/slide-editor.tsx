@@ -55,10 +55,14 @@ export function SlideEditor({ slide, onChange, hasOpener }: SlideEditorProps) {
 
   const handleImageChange = (value: string) => {
     // Validate that the URL is from tenor.com
-    if (value && !value.includes("tenor.com")) {
-      alert("Only tenor.com image URLs are allowed");
-      return;
-    }
+   if (
+     value &&
+     !value.includes("tenor.com") &&
+     !value.includes("wgucfadukzconobkkbwd.supabase.co")
+   ) {
+     alert("Only images from Tenor.com are allowed");
+     return;
+   }
 
     onChange({
       ...slide,

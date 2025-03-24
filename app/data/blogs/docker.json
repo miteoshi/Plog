@@ -3,7 +3,7 @@
     {
       "type": "Opener",
       "title": "Docker Daily",
-      "paragraph": "A dialy diary on Docker",
+      "paragraph": "A Daily Diary of my Docker Learning",
       "subparagraph": "By Piyush Joshi",
       "links": [
         {
@@ -14,55 +14,70 @@
     },
     {
       "type": "Para",
-      "title": "First thing first",
-      "paragraph": "Docker is a tool which helps running programs in an isolated environment ie in a **container**.\n\n- Containers are isolated from each other. They can't see each other's processes or filesystem.\n- An image is build upon image layers which are commands to set container up.\n- ⁠An image can be reused and can be shared with push and can be used by pulling someone else's image.\n- An image is a blueprint on to which container will run. Like a skeleton\n\nYou can give tage t, list with doc--- Hol up. too much info. Let's go easy on yo small ass."
+      "title": "Day 1",
+      "paragraph": "It wasn't my first time looking at what docker is cause I have a friend with whom I was working on a college project that used docker. For example, I knew it was used for\n- Isolating your application in a container so, you can run it on any machine with the docker installed.\n- Therefore eliminating the risk of different versions of dependencies installed or dependencies itself.\n\nSo, I got a udemy [course](https://www.udemy.com/course/docker-kubernetes-the-practical-guide/) of my favourite instructor [maximilian](https://www.udemy.com/user/maximilian-schwarzmuller/)"
     },
     {
       "type": "ParaSideImage",
-      "title": "But Why one will use docker in the first place",
-      "paragraph": "Cause it solves the crucial problem of :\n\n\"It's is running on my machine. Why isn't it running on yours dumbass?\".",
-      "image": "https://c.tenor.com/SGeVr5iFKREAAAAC/tenor.gif"
+      "title": "Day 2",
+      "paragraph": "Procrastination already took on and I relaxed throughout the day thinking I would start it.",
+      "image": "https://c.tenor.com/grWYw-2edNMAAAAC/tenor.gif"
     },
     {
-      "type": "ImagePara",
-      "title": "So how do docker solves this problem?",
-      "paragraph": "When you use Docker, you're basically packing your app with everything it needs and putting it into a container. This container can then run anywhere, on any computer, without worrying about whether that computer has the right stuff installed.\n\nIt’s like taking a portable video game console with all your games and not needing to install anything on other people's devices to play.",
-      "image": "https://c.tenor.com/FZqSyC5weE8AAAAC/tenor.gif",
-      "list": [
-        "Take deep breaths before reacting.",
-        "Pause and count to five before responding.",
-        "Use positive self-talk (e.g., 'I can handle this').",
-        "Step away for a moment if needed.",
-        "Remember: It’s okay to make mistakes."
-      ],
-      "links": [
-        {
-          "label": "Learn More",
-          "href": "https://c.tenor.com/yheo1GGu3FwAAAAd/tenor.gif"
-        }
-      ]
+      "type": "Para",
+      "title": "Day 3 (I Started)",
+      "paragraph": "I started the course and through the first section of the course I learned\n- How it's different from [VM](https://www.vmware.com/topics/virtual-machine) i.e virtual machine\n- Installation process.\n\nWhile Virtual Machines go for full isolation rather than process-level isolation like docker it lacks high startup speed and high RAM usage.\n![VM](https://c.tenor.com/u6nBAC8ZMTQAAAAd/tenor.gif)\n\nand while VM requires a full guest OS per VM. Docker shares the host OS [kernel](https://en.wikipedia.org/wiki/Kernel_(operating_system)) which is lightweight."
     },
     {
-      "type": "CodePara",
-      "title": "havne't you had enough? im still writing the blog",
-      "paragraph": "Some description *here*",
-      "codeblock": [
-        {
-          "codeparagraph": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\n\nThe standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
-          "code": "const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));\n\nasync function example() {\n  console.log('Start');\n  await delay(2000);\n  console.log('After 2 seconds');\n}\n\nexample();"
-        },
-        {
-          "codeparagraph": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin",
-          "code": "const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));\n\nasync function example() {\n  console.log('Start');\n  await delay(2000);\n  console.log('After 2 seconds');\n}"
-        }
-      ],
-      "image": "https://c.tenor.com/QaDAVbWJYj0AAAAd/tenor.gif",
-      "links": [
-        {
-          "label": "Learn More",
-          "href": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-        }
-      ]
+      "type": "Para",
+      "title": "Understanding Installation",
+      "paragraph": "Already knew that docker creates lightweight, isolated environments (containers) that run applications that rely on the OS [kernel's](https://en.wikipedia.org/wiki/Kernel_(operating_system)) features like namespaces, systemd and groups.\n\nNamespaces create isolated environments so that processes think they are running on their own machine. types could be\n- PID Namespace → Each container has its own process tree (so a process in one container can’t see another).\n- Network Namespace → Each container has its own network interfaces (own IP, own routing table).\n- Mount Namespace → Containers have their own filesystem view.\n- User Namespace → Containers can map users differently (root in a container ≠ root on the host).\n\n- [systemd](https://en.wikipedia.org/wiki/Systemd#:~:text=systemd%20is%20a%20software%20suite,space%20and%20manage%20user%20processes.) is the Linux service manager that starts, stops, and manages system processes.\n- [cgroups](https://en.wikipedia.org/wiki/Cgroups) limit and monitor resource usage (CPU, RAM, disk, etc.) for processes.\n\nwell back to installation.\n"
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "WSL for the rescue",
+      "paragraph": "Since Docker is fundamentally a Linux-native technology, everything \"just fucking works\" on Linux.\nand windows have [NT Kernel](https://en.wikipedia.org/wiki/Windows_NT), also does not have cgroups or namespaces like Linux does.\n\n\nNow [WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux) comes for the rescue. ie  (Windows Subsystem for Linux) with real Linux [kernel](https://en.wikipedia.org/wiki/Kernel_(operating_system)) running inside Windows.\n\nwindows installs wsl2 -> docker installs linux kernel inside wsl2 ->windows communicate with wsl2",
+      "image": "https://c.tenor.com/hWdX_AVcwlUAAAAC/tenor.gif"
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "The Alternative : Hyper V",
+      "paragraph": "A Full virtual machine (VM) solution.\n\nEnable Hyper V through powershell\n```\nEnable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All\n```\n\n[Hyper-V](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows-server) is Microsoft’s built-in hypervisor that allows Windows to run virtual machines (VMs). It works at the hardware level, meaning it can create completely isolated environments running separate operating systems.",
+      "image": "https://c.tenor.com/8RDmq9fOGdwAAAAd/tenor.gif"
+    },
+    {
+      "type": "Para",
+      "title": "Day 4",
+      "paragraph": "Wanted to learn but have too much corporate work. Bye"
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "Day 5",
+      "paragraph": "I'm scrolling through instagram with usual memes and brain rot. I Couldn't help myself to procrastinate more.",
+      "image": "https://c.tenor.com/BzJfJSk4u8wAAAAC/tenor.gif"
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "Day 6 (We are so back!)",
+      "paragraph": "I started learning about different concepts such as images, containers, and commands.\n\nThese are the core concepts of docker. Also there is [docker desktop](https://www.docker.com/) application, to control the containers and images directly without using commands.  But command feels cool and obviously, more flexibility.",
+      "image": "https://c.tenor.com/GII7a0HI-2MAAAAd/tenor.gif"
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "Images",
+      "paragraph": "Docker uses images and containers to package and run applications.\n\n- Images are blueprints that contain the application code and required dependencies.\n- Containers are running instances created from images.\n\nThis separation allows us to define an image once and run multiple containers based on it. This makes deployment efficient, as the same image can be used across different machines and environments.\n\nImages are written in a 'Dockerfile'\nDocker always looks for a file named Dockerfile (without any extension) when building an image.\n\nTo build this image we use `docker build .`\nand if you want to use your own file name. You can pass it with a file flag. \n`docker build -t my-app -f MyDockerfile .`\n\nDockerfile consist of\n- FROM node → Uses the latest Node.js image.\n- WORKDIR /app → Sets /app as the working directory inside the container.\n- COPY package.json ./ → Copies package.json to /app (needed for npm install).\n- RUN npm install → Installs dependencies.\n- COPY . ./ → Copies all files from the project into /app.\n- EXPOSE 80 → Documents that the container uses port 80 (but doesn’t actually publish it).\n- ENV M_USERNAME=admin and ENV M_PASSWORD=password → Sets environment variables.\n- CMD [\"npm\", \"start\"] → Runs npm start when the container starts.\n\nYou can also give names such as `myapp` and tags to images. by default `latest` is given\n`docker build -t myapp:v1 .`",
+      "image": "https://wgucfadukzconobkkbwd.supabase.co/storage/v1/object/public/images//Screenshot%202025-03-24%20at%202.08.20%20PM.png"
+    },
+    {
+      "type": "Para",
+      "title": "All Necessary Keywords For Dockerfile",
+      "paragraph": "| Instruction       | Description                                   |\n|------------------|----------------------------------------------|\n| FROM          | Specifies the base image                     |\n| WORKDIR       | Sets the working directory                   |\n| COPY          | Copies files into the container              |\n| ADD           | Copies files (also extracts .tar.gz)       |\n| RUN           | Executes commands during image build         |\n| CMD           | Default command when the container starts    |\n| ENTRYPOINT    | Forces a command execution                   |\n| ENV           | Sets environment variables                   |\n| EXPOSE        | Documents which ports the container uses     |\n| VOLUME        | Creates persistent storage                   |\n| LABEL         | Adds metadata to the image                   |\n| ARG           | Defines build-time variables                 |\n| USER          | Runs the container as a specific user        |\n| HEALTHCHECK   | Defines a health check command               |\n| SHELL         | Changes the default shell (Windows)          |\n| ONBUILD       | Runs commands when used as a base image      |\n| STOPSIGNAL    | Defines a safe stop signal                   |\n| COPY --chown  | Copies files and sets ownership              |\n| .dockerignore | Excludes files from the build                |\n"
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "Containers and Volumes",
+      "paragraph": "Containers are environments that run your application based on images and the data resides in volumes.\n\nThere are 3 types of volumes;\n1. Anonymous Volume: Automatically created by docker, lost when the container is removed unless explicitly managed. \n2. Named Volume: Explicitly created and stored in Docker's volume directory (/var/lib/docker/volumes/). Not deleted when the container is removed\n3. Bind Mounts: Maps a specific host directory to a container path and Changes in the host directory reflect in the container immediately. (good for the development stage)\n\ntoo much of theory. maybe I will get into action next time.",
+      "image": "https://c.tenor.com/Oa8BSeSCEb0AAAAC/tenor.gif"
     }
   ]
 }
