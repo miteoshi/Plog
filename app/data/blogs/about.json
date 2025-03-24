@@ -15,7 +15,7 @@
     {
       "type": "ParaSideImage",
       "title": "About the Author",
-      "paragraph": "*Hey there!*\nI'm a _dumbass_ software engineer, who loves to learn.\n\nHere I will post my blogs :)\n\nTake care!\n\nFeel free to connect with me.\n\n[A detailed view about me ->](/piyush-joshi/1)",
+      "paragraph": "*Hey there!*\nI'm a _dumbass_ software engineer, who loves to learn.\n\nHere I will post my blogs :)\n\nTake care!\n\nFeel free to connect with me.",
       "image": "https://c.tenor.com/JPNdFiad9C8AAAAC/tenor.gif",
       "links": [
         {
@@ -25,6 +25,10 @@
         {
           "label": "Github",
           "href": "https://github.com/miteoshi"
+        },
+        {
+          "label": "Resume",
+          "href": "/piyush-joshi/1"
         }
       ]
     }
