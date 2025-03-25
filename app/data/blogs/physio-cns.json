@@ -1,0 +1,111 @@
+{
+  "physio-cns": [
+    {
+      "type": "Opener",
+      "title": "Central Nervous System",
+      "paragraph": "Story of brain and spinal cord",
+      "subparagraph": "Swipe left or tap on right to start",
+      "links": [
+        {
+          "label": "<- Read Blogs",
+          "href": "/menu"
+        }
+      ]
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "Sensory Nervous System",
+      "paragraph": "### Spinal Cord\n\nCentral Gray Matter (H shaped) \n - Have two horns \n - Dorsal (back side) which are sensory in nature like touch/pain) Sensory, carry sensory neurons into the dorsal horns.\n - Ventrol Horns (front side), They are motor in nature, since they are for muscle contraction using neurons aka eefrants/motor neuorns coming out from ventrol roots aka motor horns.\n\nA pathalogy example would be\n - Polio: Poliovirus damages ventral horns.\n - Result: Motor paralysis (patient cannot move due to loss of motor neurons).\n\nBell-Magendie Law: States that dorsal roots are sensory, ventral roots are motor—an important exam point. And  **Ventrol**  have motor neurons and Dorsal have sensory neurons."
+    },
+    {
+      "type": "Para",
+      "title": "Touch Sensations",
+      "paragraph": "| Receptor Type          | Location                                           | Function                                           | Adaptation      |\n|------------------------|----------------------------------------------------|----------------------------------------------------|-----------------|\n| **Meissner’s Corpuscles** | Lips, fingertips (hairless skin areas)            | Detect low-frequency vibrations and gentle touch   | Fast-adapting   |\n| **Merkel Cells**         | Fingertips, lips (Basal layer of epidermis)       | Sensitive to edges and corners; aid in reading Braille | Slow-adapting   |\n| **Pacinian Corpuscles**  | Deep in the skin, interosseous membranes         | Detect deep touch, high-frequency vibrations, and pressure | Fast-adapting   |\n| **Ruffini Endings**      | Deep in the skin, ligaments, and tendons         | Sensitive to skin stretch                           | Slow-adapting   |\n\n*Mnemonic: **MMPR** (Meissner’s, Merkel, Pacinian, Ruffini) — useful for exams.*\n\n- A fast adapting refers to detecting changes rather than sustained pressure ie slow adapting."
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "Sensory Processing",
+      "paragraph": "## Mechanism\n- Receptors convert **mechanical stimuli** (e.g., touch) into **electrical impulses**.\n\n## Fiber Type\n- **A-Beta Fibers** carry touch sensation to the CNS.\n- Activated by **non-painful stimuli** (e.g., massaging, hot/cold packs, skin rubbing).\n\n## Example\n- **Rubbing a painful area** activates A-Beta fibers.\n\n---\n\n# Gate Control Theory\n\n## Concept\n- **Non-painful stimuli modulate pain perception** at the spinal cord level.\n\n## Process\n1. **A-Beta fibers** are activated by non-painful stimuli (e.g., massage).\n2. These fibers stimulate **inhibitory interneurons** in the spinal cord.\n3. **Inhibitory interneurons block second-order neurons** carrying pain signals.\n4. **Result**: Reduced pain intensity (e.g., rubbing a bruise feels relaxing).\n\n## Significance\n- Explains **pain modulation techniques** in clinical practice.\n"
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "Somatosensory pathway",
+      "paragraph": "## Ascending Tracts  \n\nThe spinal cord carries sensory information to the brain through two major pathways: **Spinothalamic Tracts** (for primitive sensations) and **Dorsal Column Tracts** (for advanced sensations).  \n\n---\n\n##  **Spinothalamic Tracts (Primitive Sensations) – Cross Early** \n\nSensory fibers for **crude touch, pressure, pain, and temperature** enter the spinal cord, cross over to the **opposite side** immediately, and ascend to the brain.  \n\n**📍 Left side damage → Right side sensory loss**  \n\n### **Lateral Spinothalamic Tract (Pain & Temperature)**  \nLocated on the **outer lateral side** of the spinal cord, this tract transmits **pain and temperature** sensations. If damaged on the left, pain and temperature loss occur on the right side of the body.  \n\n### **Anterior Spinothalamic Tract (Crude Touch & Pressure)**  \nPositioned more **anteriorly**, this tract carries **crude touch and pressure** sensations. Just like the lateral tract, it crosses over in the spinal cord, meaning left-side damage affects the right side.  \n\n---\n\n##  **Dorsal Column Tracts (Advanced Sensations) – Cross Late in the Medulla** \n\nThese tracts carry **fine touch, vibration, proprioception, and two-point discrimination**. Unlike the spinothalamic tracts, they **do not cross immediately**. Instead, they travel **on the same side (ipsilateral) within the spinal cord** and only cross over at the **medulla** before reaching the brain.  \n\n**📍 Left side damage in the spinal cord → Left side sensory loss**  \n\n### **Fasciculus Gracilis (Lower Body Sensations)**  \nLocated **medially** in the dorsal column, this tract carries **fine touch, vibration, and proprioception from the lower limbs**.  \n\n### **Fasciculus Cuneatus (Upper Body Sensations)**  \nSituated **laterally** in the dorsal column, this tract transmits **fine touch and proprioception from the upper body (arms, thorax)**.  \n\n---\n\n## **Key Difference: Early vs. Late Crossings**  \n- **Spinothalamic Tracts** cross **immediately in the spinal cord** (opposite-side loss).  \n- **Dorsal Column Tracts** stay **on the same side in the spinal cord** and cross **later in the medulla** (same-side loss if damaged in the spinal cord).  \n\n### Sensory Pathway to Cortex\n\n- Sensations travel from the spinal cord → thalamus → cortex.\n- Thalamus: Sensory relay center (except olfaction).\n- Ventro Posterolateral Nucleus (VPL): Receives all sensations except taste.\n- Ventro Posteromedial Nucleus (VPM): Receives taste.\n- Motor Nuclei: Ventrolateral, ventromedial, centromedian (motor functions).\n- overall path: 1st order neuron(receptor -> spinal cord), 2nd order (spinal -> thalamus) 3rd order (thalamus -> cortex) - > Sensory Pathway to Cortex\n\n",
+      "image": "https://wgucfadukzconobkkbwd.supabase.co/storage/v1/object/public/images//Screenshot%202025-03-25%20at%209.59.50%20PM.png"
+    },
+    {
+      "type": "Para",
+      "title": "Pathology Examples  ",
+      "paragraph": "### *Brown-Séquard Syndrome (Hemisection of Spinal Cord)**  \n- **Cause:** Damage to one side (hemisection) of the spinal cord.  \n- **Effects:**  \n  - **Ipsilateral (Same Side) Loss:** Advanced sensations (fine touch, proprioception, vibration) due to dorsal column damage.  \n  - **Contralateral (Opposite Side) Loss:** Primitive sensations (pain, temperature) due to spinothalamic tract damage (crosses early).  \n- **Example:** A right-sided spinal lesion leads to:  \n  - Right-sided loss of **fine touch and proprioception**.  \n  - Left-sided loss of **pain and temperature** (below the lesion).  \n\n---\n\n### 🦠 **Tabes Dorsalis (Dorsal Column Degeneration)**  \n- **Cause:** Neurosyphilis damages the dorsal columns.  \n- **Effect:** Loss of advanced sensations (**fine touch, proprioception**), leading to a **stomping gait** (patients stomp their feet to compensate for the lack of position sense).  \n\n---\n\n### **Syringomyelia (Central Cord Syndrome)**  \n- **Cause:** A fluid-filled cavity (syrinx) forms in the central spinal cord, damaging **crossing second-order neurons** that carry primitive sensations.  \n- **Effect:**  \n  - Loss of **pain, temperature, crude touch, and pressure** (dissociative sensory loss).  \n  - **Advanced sensations (fine touch, proprioception) remain intact** because the dorsal columns are unaffected.  \n"
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "Near Central Sulcus",
+      "paragraph": "We have Gyrus ↑ Sulcus ↓ Neural tissue. The central sulcus divides the frontal lobe from the parietal lobe\n- Primary Motor Cortex **Pre Central Gyrus** (Somatosensory Cortex)\n- Somatosensory Cortex **Post Central Gyrus** (All Sensation)\n- Broca’s Area: **Inferior frontal gyrus** (Brodmann 44, 46), motor speech (damage → expressive aphasia, broken speech).\n- Wernicke’s Area: **Superior temporal gyrus** (Brodmann 22), comprehension (damage → fluent aphasia, nonsense speech/can't understand).\n- Arcuate Fasciculus: Connects Broca’s and Wernicke’s areas.\n- Pleasure Centers: Ventral tegmental area, nucleus accumbens, medial forebrain bundle (addiction-related).\n- Vomiting Center: Area postrema (circumventricular organ, outside blood-brain barrier).\n",
+      "image": "https://wgucfadukzconobkkbwd.supabase.co/storage/v1/object/public/images//Screenshot%202025-03-25%20at%2010.55.08%20PM.png"
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "Sensory Homunculus (cross section of post-central gyrus):",
+      "paragraph": "Representation of body parts on the postcentral gyrus:\n- Medial Part: Lower body (genitals, legs), blood supplied by anterior cerebral artery (ACA).\n- Lateral Part: Upper body (face, hands), blood supplied by the middle cerebral artery (MCA).\n- Maximum Representation: Face (especially lips) and hands (especially thumb)—large cortical areas due to high receptor density.\n- Example: ACA stroke → loss of sensation in contralateral lower limbs; MCA stroke → loss of sensation in contralateral upper body/face.\n",
+      "image": "https://wgucfadukzconobkkbwd.supabase.co/storage/v1/object/public/images//WhatsApp%20Image%202025-03-25%20at%2023.36.05.jpeg"
+    },
+    {
+      "type": "Para",
+      "title": "Law of Projection",
+      "paragraph": "Concept: Stimulation anywhere in the sensory pathway (receptors, neurons, cortex) → sensation perceived at the receptor level.\n\n- Example: Stimulating cortex with an electrode → patient feels touch on genitals/face, though not physically touched.\n- Clinical Relevance: Explains phantom limb phenomenon—amputees feel pain in missing limbs due to cortical irritation or plasticity."
+    },
+    {
+      "type": "Para",
+      "title": "Motor Nervous System",
+      "paragraph": "We will talk about Descending Tracts.\n\nCortex -> Spinal Cord\n\nMotor neuron starts from the cortex through the Corticospinal Tracts  \n        ↓  \nIn the lower medulla, **80% of fibers** cross to the **lateral side** \nforming the **Lateral Corticospinal Tract**  \n        ↓  \nThe remaining uncrossed **20% of fibers** forming Anterior Corticospinal Tract then crosses **after the spinal cord**.\n\n### In Depth\n\nCorticospinal Tracts (Pyramidal):\n\n- Origin: Motor cortex (precentral gyrus, Brodmann 4, 6; 60%) + sensory cortex (postcentral gyrus; 40%).\n- Pathway: Upper motor neurons (UMNs) descend from the cortex to spinal cord.\n\nLateral Corticospinal Tract:\n- 80% of fibers cross in medulla (pyramidal decussation).\n- Travels in lateral spinal cord column.\n- Function: Fine motor movements (e.g., writing, painting, needlework) of distal muscles.\n\nAnterior Corticospinal Tract:\n- 20% of fibers remain uncrossed, travel in the anterior spinal cord column.\n- Cross in the spinal cord before innervating lower motor neurons (LMNs).\n-Function: Controls proximal muscles.\n\n"
+    },
+    {
+      "type": "Para",
+      "title": "Some More Tracts In Descending Tracts",
+      "paragraph": "### Extrapyramidal Tracts:\n- Origin: Brainstem nuclei (midbrain, pons, medulla), not cortex.\n- Examples:\n- Rubrospinal Tract: From red nucleus, aids fine motor movements with corticospinal tracts.\n- Reticulospinal, Tectospinal, Vestibulospinal: Control tone, balance, gross movements.\n- Function: Maintain muscle tone, posture, and balance.\n\n### Motor Pathway:\nUMNs (Upper Motor Neuron Syndrome)(cortex → spinal cord) regulate LMNs (ventral horn → muscles).\nExample: UMN from cortex crosses in medulla, synapses with LMN in spinal cord, causing muscle contraction.\n"
+    },
+    {
+      "type": "Para",
+      "title": "Motor Neuron Lesions",
+      "paragraph": "### Upper Motor Neuron (UMN) Lesions:\n- Analogy: UMNs are parents controlling LMN children.\n- Effect: Loss of UMN inhibition → LMNs overfire.\n- Symptoms:\n- Paralysis (spastic, muscles in spasm).\n- Hyperreflexia (exaggerated reflexes).\n- Hypertonia (increased muscle tone).\n- Positive Babinski sign (toes fan out/upward when sole stroked—normal is flexion).\n- Cause: Stroke, spinal cord injury above LMN level.\n- Lower Motor Neuron (LMN) Lesions:\n### Effect: LMNs dead → no muscle innervation.\n- Symptoms:\n- Flaccid paralysis (muscles limp).\n- Hyporeflexia (reduced reflexes).\n- Hypotonia (decreased tone).\n- No Babinski sign.\n- Cause: Polio, peripheral nerve damage.\n"
+    },
+    {
+      "type": "Para",
+      "title": "Muscle Proprioceptors",
+      "paragraph": "Extrafusal Fibers: Actin/myosin, contract for movement, innervated by **alpha motor neurons (LMNs)**.\n\nIntrafusal Fibers: Many of these form together, a **muscle spindle(a receptor)** \n - to detect muscle length, \n- and are innervated by **gamma motor neurons (LMNs)** for contraction + Sensory neurons innervation: Primary 1a fibers and secondary fibers send length information to the CNS.\n"
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "Reflexes : Stretch Reflex (Monosynaptic)",
+      "paragraph": "Stimulus: Muscle stretch (e.g., tendon tap with hammer).\n- Receptor: Muscle spindle activated.\n- Pathway: Primary 1a fibers → synapse(two neuron communicate) directly with alpha motor neuron in spinal cord → muscle contraction.\n- Example: Knee-jerk reflex (tap on quadriceps tendon → leg extends).\n- Significance: Monosynaptic (one synapse), protects muscle from overstretching.\n",
+      "image": "https://wgucfadukzconobkkbwd.supabase.co/storage/v1/object/public/images//Screenshot%202025-03-26%20at%2012.36.00%20AM.png"
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "Reflexes : Inverse Stretch Reflex (Disynaptic)",
+      "paragraph": "- Stimulus: Excessive tendon tension (e.g., lifting 150 kg weight).\n- Receptor: Golgi tendon organ (GTO) in tendon detects tension.\n- Pathway: Group 1b fibers **→** 1b fiber activate inhibitory interneuron (releases GABA) **→** inhibits alpha motor neuron → muscle relaxation.\n- Example: Dropping a heavy weight to prevent tendon tear (e.g., biceps rupture in gym).\n- Significance: Disynaptic (two synapses) (between 1b and inhibitory interneurons which release GABA **and** GABA inhibits alpha motor neuron) , protective mechanism.\n",
+      "image": "https://wgucfadukzconobkkbwd.supabase.co/storage/v1/object/public/images//Screenshot%202025-03-26%20at%2012.47.52%20AM.png"
+    },
+    {
+      "type": "Para",
+      "title": "Hypothalamus ",
+      "paragraph": "Find a [flowchart](https://www.mermaidchart.com/raw/6c348ad4-3d9b-4b8f-9325-78a029e8dbf9?theme=dark&version=v0.1&format=svg). This will help remember the nucleus."
+    },
+    {
+      "type": "Para",
+      "title": "Basal Ganglia",
+      "paragraph": "Find the [flowchart](https://www.mermaidchart.com/raw/a4146b5a-3b62-418a-bdf3-52b79b77d55a?theme=dark&version=v0.1&format=svg) for Basal Ganglia"
+    },
+    {
+      "type": "Para",
+      "title": "Sleep and EEG",
+      "paragraph": "### EEG Waves:\n- Alpha (8-12 Hz): Relaxed, eyes closed (Berger waves, inattention waves).\n- Beta (13-30 Hz): Active mind (desynchronization waves).\n- Gamma (>60 Hz): Intense focus (e.g., problem-solving).\n- Theta (4-7 Hz): Light sleep, drowsy (memory waves).\n- Delta (1-3 Hz): Deep sleep, dreaming (slow waves).\n\n#### Sleep Phases:\nNREM (4 Stages):\n- Stage 1: Light sleep (theta waves).\n- Stage 2: Sleep spindles, K-complexes (8-12 Hz, longest duration).\n- Stages 3-4: Deep sleep (delta waves).\n- Parasomnias: Sleepwalking (stages 3-4), bruxism (stage 2), night terrors, bedwetting (not remembered).\n\n### REM:\n- Beta waves, PGO spikes (ponto-geniculo-occipital, cause eye movements).\n- Paradoxical sleep (sleeping but active brain).\n- Muscles relaxed (except diaphragm, extraocular muscles).\n- Nightmares (bad dreams, remembered).\n"
+    },
+    {
+      "type": "Para",
+      "title": "PYQ",
+      "paragraph": "Stretch Reflex Mediator: Muscle spindles.\n\nMedial Lemniscus Lesion (Pons): Loss of tactile/proprioception on opposite side.\n\nInferior Frontal Gyrus Injury: Motor speech area (Broca’s) affected.\n\nCervical Spine Injury (Lateral Dorsal Column): Ipsilateral arm proprioception loss.\n\nMultiple Sclerosis: Oligodendrocytes (demyelination).\n\nBrown-Séquard Syndrome: Pain/temperature loss on opposite side.\n\nReward Center: Ventral tegmental area.\n\nSubthalamic Nucleus Lesion: Hemiballismus.\n\nLeast Conduction Velocity: C fibers (postganglionic autonomic, slow pain, warm temperature).\n\nPressure on Arm (Sleeping): A-alpha fibers affected first → weakness, no numbness."
+    }
+  ]
+}
