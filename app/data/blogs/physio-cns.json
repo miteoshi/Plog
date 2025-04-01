@@ -3,7 +3,7 @@
     {
       "type": "Opener",
       "title": "Central Nervous System",
-      "paragraph": "Story of brain and spinal cord",
+      "paragraph": "I challenged myself to learn at an MBBS level.",
       "subparagraph": "Swipe left or tap on right to start",
       "links": [
         {
@@ -11,6 +11,11 @@
           "href": "/menu"
         }
       ]
+    },
+    {
+      "type": "Para",
+      "title": "Pathology Examples  ",
+      "paragraph": "A close friend of mine who is pursuing MBBS told me how difficult it is to memorise and learn physiology. So of course I **disagreed** and tried it myself. \n\nI chose CNS as something to learn and started with this [Rapid Revision](https://www.youtube.com/watch?v=DZ-EVzis-R0) video."
     },
     {
       "type": "ParaSideImage",
@@ -106,6 +111,11 @@
       "type": "Para",
       "title": "PYQ",
       "paragraph": "Stretch Reflex Mediator: Muscle spindles.\n\nMedial Lemniscus Lesion (Pons): Loss of tactile/proprioception on opposite side.\n\nInferior Frontal Gyrus Injury: Motor speech area (Broca’s) affected.\n\nCervical Spine Injury (Lateral Dorsal Column): Ipsilateral arm proprioception loss.\n\nMultiple Sclerosis: Oligodendrocytes (demyelination).\n\nBrown-Séquard Syndrome: Pain/temperature loss on opposite side.\n\nReward Center: Ventral tegmental area.\n\nSubthalamic Nucleus Lesion: Hemiballismus.\n\nLeast Conduction Velocity: C fibers (postganglionic autonomic, slow pain, warm temperature).\n\nPressure on Arm (Sleeping): A-alpha fibers affected first → weakness, no numbness."
+    },
+    {
+      "type": "Para",
+      "title": "Conclusion",
+      "paragraph": "It's difficult. I couldn't even remember it for the next 4 hours before I slept and forgot everything, all keywords. So Props to my friend who is going through this. Respect is increased towards lol."
     }
   ]
 }
