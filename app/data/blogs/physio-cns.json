@@ -113,9 +113,10 @@
       "paragraph": "Stretch Reflex Mediator: Muscle spindles.\n\nMedial Lemniscus Lesion (Pons): Loss of tactile/proprioception on opposite side.\n\nInferior Frontal Gyrus Injury: Motor speech area (Broca’s) affected.\n\nCervical Spine Injury (Lateral Dorsal Column): Ipsilateral arm proprioception loss.\n\nMultiple Sclerosis: Oligodendrocytes (demyelination).\n\nBrown-Séquard Syndrome: Pain/temperature loss on opposite side.\n\nReward Center: Ventral tegmental area.\n\nSubthalamic Nucleus Lesion: Hemiballismus.\n\nLeast Conduction Velocity: C fibers (postganglionic autonomic, slow pain, warm temperature).\n\nPressure on Arm (Sleeping): A-alpha fibers affected first → weakness, no numbness."
     },
     {
-      "type": "Para",
+      "type": "ParaSideImage",
       "title": "Conclusion",
-      "paragraph": "It's difficult. I couldn't even remember it for the next 4 hours before I slept and forgot everything, all keywords. So Props to my friend who is going through this. Respect is increased towards lol."
+      "paragraph": "It's difficult. I couldn't even remember it for the next 4 hours before I slept and forgot everything, all keywords. \n\nSo Props to my friend who is going through this. **Respect** is increased towards her lol. ",
+      "image": "https://c.tenor.com/KDK4gjRz9ioAAAAC/tenor.gif"
     }
   ]
 }
