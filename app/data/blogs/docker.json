@@ -60,7 +60,7 @@
       "type": "ParaSideImage",
       "title": "Day 6 (We are so back!)",
       "paragraph": "I started learning about different concepts such as images, containers, and commands.\n\nThese are the core concepts of docker. Also there is [docker desktop](https://www.docker.com/) application, to control the containers and images directly without using commands.  But command feels cool and obviously, more flexibility.",
-      "image": "https://c.tenor.com/GII7a0HI-2MAAAAd/tenor.gif"
+      "image": ""
     },
     {
       "type": "ParaSideImage",
