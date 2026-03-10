@@ -1,0 +1,37 @@
+{
+  "mls": [
+    {
+      "type": "Opener",
+      "title": "O'Reilly Designing Machine Learning Systems",
+      "paragraph": "",
+      "subparagraph": "Notes for usage",
+      "links": [
+        {
+          "label": "Go to menu",
+          "href": "/menu"
+        }
+      ]
+    },
+    {
+      "type": "Para",
+      "title": "Chapter 1 - Overiew of Machine Learning",
+      "paragraph": "I will put it later"
+    },
+    {
+      "type": "Para",
+      "title": "Chapter 2 - Introduction to ML System Design",
+      "paragraph": "I will put it later"
+    },
+    {
+      "type": "Para",
+      "title": "Data engineering Fundamentals",
+      "paragraph": "- Data can be stored in different formats, and a database for two types of processing: transactional and analytical\n-  Different modes fo data passing : Data storage engines for historical data. and real time transport for streaming data.\n- User generated data needs to be processed fast, though  system-generated data ie logs can be processed much slower and can be debugged using Logstash, Datadog , Logz.io (uses ML modles to  to help in processing massive amount of logs).\n- System Logs should be stored in low-access storage as logs will increase rapidly, and old logs which arent of use, can be deleted.\n"
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "More data",
+      "paragraph": "- Internal databases of companies stores \"First party data\", ie the data which companies stores about their users, which is used for training ML models and betterment of application.\n- Second party data are data collected by another company of their customer and shared with the first company.\n- Third party data are collected by companies from the public who aren't their direct customers.\n- In smartphones, we have IDFA (ios) and AAID in android, unique id of phone to aggregate all activities from phone. Data is hopefully anonymized.\n\n- In 2021, Apple made their IDFA opt-in to curb the usage of advertiser ID. This made third party data available from iphone less, and company used different technique. \n- For example, China's advertising association, a state-supported trade assciation for ad industry, invested in Device Fingerprinting system called CAID, that alllowed  apps like Tiktok and Tencent to keep tracking iPhone users.",
+      "image": "https://media1.tenor.com/m/x-YvNUa0UPQAAAAd/james-doakes-james-doakes-sus-face.gif"
+    }
+  ]
+}

@@ -7,11 +7,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "c.tenor.com",
-      },
-      {
-        protocol: "https",
-        hostname: "media.tenor.com",
+        hostname: "**.tenor.com", // ** wildcard covers all subdomains
+        pathname: "**",
       },
       {
         protocol: "https",
