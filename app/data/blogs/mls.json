@@ -55,7 +55,7 @@
     },
     {
       "type": "Para",
-      "title": "",
+      "title": "Some for SQL",
       "paragraph": "SQL is a **declarative language**, as opposed to python, which is an **imperative language**. \n- Imperative : you declare steps needed for action to be performed, and the system executes them to return an output\n- Delcarative: you specify the output you want, and the system figures out the steps needed to get you the queried outputs.\n\nThere are lot of difficult queries that exist in companies, and ML is used to optimize those SQL quries too. As query optimization is the most challenging problems in database systems and normalization means that data is spread out on multiple relations, which makes joining them even harder. You only need one query optimizer and all your application can leverage it.\n\n"
     },
     {
@@ -90,6 +90,26 @@
       "type": "Para",
       "title": "Graph model",
       "paragraph": "A graph model is built around the concept of \"graph\". Where nodes are the data and edges define the relationship. The relationships between data items or nodes are the priority in the graph model.\n\nIts faster to retrieve data based on relationships. Many queries that are easy to do in one data model are harder to do in another data model. Picking the right data model for your application can make your life so much easier."
+    },
+    {
+      "type": "Para",
+      "title": "Storing and processing data",
+      "paragraph": "Data can be either structured or unstructured. Structured data has a schema, using which it can be analyzed much faster; in simple words, it has  a pattern to recognize. Whereas unstructured data doesn't have a schema, though it might still consist of some intrinsic patterns that help you extract structured data from it.\n\n- A repository for storing structured data is called **data warehouse**\n- A repository for storing unstructured data is called **data lake**. \n- Data lake usually used to store raw data before processing.\n- Data warehoused are used to store data which have been processed into formats which are ready to use.\n- Database are also known as storage engines, which are optimized for two types of worloads, **transactional processing** and **analytical processing**"
+    },
+    {
+      "type": "Para",
+      "title": "Transactional data",
+      "paragraph": "Transactional data is a type of data that refers to any kind of action: tweeting, watching youtube video or uploading.\nThe transactions are inserted as the yare generated and ocassionally updated when something changes or deleted when they are no longer needed. This type of processing is known as **online transaction processing (OLTP)**\n\nTherefore **low latency** and **high availability**. **ACID is followed**\n\nAtomicity: All steps in a transaction should be completed successfully; if any step fail, all other steps should fail too.\nConsistency: There must always be predefined rules that the transaction will follow\nIsolation: Guarantees two transactions happening at the same time as if they were isolated. For example, you don't want two users to book the same ride.\nDurability: Once a transaction is completed and has been committed, it will remain committed even in the case of system failure.\n\nTransactional DB doesn't need to be fully ACID, or to be ACID as some developers find it too restrictive.\nAccording to Martin Kleppmann, systems that do not meet the ACID criteria are sometimes called BASE (Basically Available, soft state and eventual consistency).\n\nBecause each transaction is often processed as a unit separately from other transactions, transactional DB are often row-major.\nTherefore, transactional DBs are not efficient for questions such as \"What's the average price for all rides to Kolkata?\" as this type of question, involves aggregating columns across different rows for a solution. As we know its easier to write row wise to data, but for an analytical question like this we might need column based, referring to [slide 7](https://plog-alpha.vercel.app/mls/7)"
+    },
+    {
+      "type": "Para",
+      "title": "Analytical Data",
+      "paragraph": "Analytical data like the previous slide need analytical database that is efficient with queries that allow you to look at data from different viewpoints. This processing is called **OLAP (Online analytical processing)**\n\nDue to limitations in technology, they have always been separated, and their usage has gone downhill. Nowadays, transactional DB can also handle analytical queries, such as CockroachDB, and vice versa, such as Apache Iceberg.\n\nSecondly, traditionally OLAP or OLTP paradigms, storage and processing are tightly coupled-how data data is stored is also how data is processed. This result in same data being stored in multiple db and using different processing engines to solve different types of queries.\n\nIn the last decade, this changed, and storage has been decoupled from processing  (aka compute), adopted by many vendors including Google's Big Query, Snowflake, IBM. So the new way is to store data in the same place, with a processing layer on top that can be optimized for different types of queries.\n\n*By the way, online in OLAP means user queries regarding multidimensional data are processed immediately, allowing for rapid, ad-hoc data exploration* "
+    },
+    {
+      "type": "Para",
+      "title": "ETL (Extract, Transform, Loading)",
+      "paragraph": "- You decide on different sources of data to want from, mostly data is structured beause it comes from **data warehouse**\n- validation is done, and reject the data that doesn't meet your criteria and notify the sources.\n- Transformation begins, and data goes through a pipeline that consists of different operations such as transpose, deduplication, sorting, aggregation, custom validations, and deriving new features.\n- Loading is deciding how and how often to load your transformed data into the target destination which can be another data warehouse or a database."
     }
   ]
 }
