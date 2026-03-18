@@ -85,6 +85,11 @@
       "type": "Para",
       "title": "NoSQL",
       "paragraph": "It just started as No schema SQL but then everyone realised its just shifting the role of maintaining schema to other team. NoSQL,  have subtypes.\n1) Document model\n2) Graph model\n\nDocument model have key value and each document can have sub document. A document is continious string encoded as JSON, XML or a binary format like BSON (Binary JSON). Each document has a unique key.\n\nIts less efficient than SQL to execute joins across documents compared to across tables because you have to retrieve all documents and then filter and probably sort or count too. \n\nTo solve this problem, engines were built for example, grahQL which gives SQL kinda like retrieving process, kinda funny and its more efficient but then it also asks for schema, to give error and to query, so its back to square one with this.\n\nThough on the bright side, its easier to change schema early and easier to make edits in the schema."
+    },
+    {
+      "type": "Para",
+      "title": "Graph model",
+      "paragraph": "A graph model is built around the concept of \"graph\". Where nodes are the data and edges define the relationship. The relationships between data items or nodes are the priority in the graph model.\n\nIts faster to retrieve data based on relationships. Many queries that are easy to do in one data model are harder to do in another data model. Picking the right data model for your application can make your life so much easier."
     }
   ]
 }
