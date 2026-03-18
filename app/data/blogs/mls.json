@@ -32,6 +32,52 @@
       "title": "More data",
       "paragraph": "- Internal databases of companies stores \"First party data\", ie the data which companies stores about their users, which is used for training ML models and betterment of application.\n- Second party data are data collected by another company of their customer and shared with the first company.\n- Third party data are collected by companies from the public who aren't their direct customers.\n- In smartphones, we have IDFA (ios) and AAID in android, unique id of phone to aggregate all activities from phone. Data is hopefully anonymized.\n\n- In 2021, Apple made their IDFA opt-in to curb the usage of advertiser ID. This made third party data available from iphone less, and company used different technique. \n- For example, China's advertising association, a state-supported trade assciation for ad industry, invested in Device Fingerprinting system called CAID, that alllowed  apps like Tiktok and Tencent to keep tracking iPhone users.",
       "image": "https://media1.tenor.com/m/x-YvNUa0UPQAAAAd/james-doakes-james-doakes-sus-face.gif"
+    },
+    {
+      "type": "Para",
+      "title": "Data formats",
+      "paragraph": "The process of converting a data structure or object state into a format that can be stored and trasmitted and reconstructed latter is called *data serialization*\n\nThere are many formats, like JSON (key value), CSV(row major), Parquet(binary, column major), Pickle(binary)\n\nJSON is easy to read, but since there are text based, it is large in size. Also its difficult to change the schema\n\nCSV are row based, which means consecutive items are placed in next row, while in Parquet which is column based, elements are in columns, next to each other.\n\nWhen accessing data, row-based storage is best, as modern computers process sequential data more efficiently than non-sequential data, so a row-based table will be much faster to access than accessing column based table.\n\nLets take an example of a dataset of 1000 examples, with each one having 5 features. Each example will be in a row. so  a row-major format, CSV will be better to access **examples** like  i want the details for id 6.\nParquet will be better to access the features which are in coulmn like i want all the incomes.\n\n### Example Dataset (10 Rows × 5 Columns)\n\n| ID | Age | Income | Score | Purchased |\n|----|-----|--------|-------|-----------|\n| 1  | 22  | 25000  | 45    | No        |\n| 2  | 25  | 32000  | 52    | Yes       |\n| 3  | 47  | 58000  | 68    | Yes       |\n| 4  | 52  | 60000  | 72    | No        |\n| 5  | 46  | 52000  | 65    | Yes       |\n| 6  | 56  | 61000  | 70    | No        |\n| 7  | 28  | 35000  | 55    | Yes       |\n| 8  | 33  | 42000  | 60    | No        |\n| 9  | 36  | 48000  | 63    | Yes       |\n| 10 | 40  | 50000  | 66    | No        |"
+    },
+    {
+      "type": "Para",
+      "title": "",
+      "paragraph": "Therefore having more features means its better to store in column-based formats. However with row-major formats, if you dont know the size of the row, you will have to read all the columns and then filter down to few columns which you need. \nEven if you know the size of that row, you still have to jump around memory, unable to take advantage of caching.\n\nRow-major formats allows faster writes. An example, if we want to keep adding more user in above table, it will be much faster to write in to a file where data is already in row-major format.\n\nSo the key take away is, row-major formats are better when you have to do a lot of writes, whereas column-based ones are better when you have to a lot of column-based reads.\n\nAWS recommends using Parquet format because \"the parquet format is up to 2x faster to unload and consume up to 6x less storage in Amazon S3\""
+    },
+    {
+      "type": "Para",
+      "title": "Data Model",
+      "paragraph": "Data model is how you choose to represent your data, it affects the problems your system can solve and the way your system is built.\n\nExample would be a uber app, where you want to represent cars, people do not want to buy cars but to ride them, so its better to show the price, and what type are they.\n\nThere are 3 major models:\n1) Relational model\n2) NoSQL\n3) Graph model"
+    },
+    {
+      "type": "Para",
+      "title": "Relational Model",
+      "paragraph": "- Edgar F. Codd invented the relational model in 1970. Here, the data is organised into relations; each relation is a set of tuples. \n- A table is an accepted visual representation of a relation, and each row of the table makes up a tuple.\n- Relations are unordered and can be shuffled both rows and columns, and it will remain the same relation.\n- Data following the relational model is usually stored in file formats like CSV or Parquet.\n- Data normalisation is used to normalize the relation to reduce redundancy and improve data integrity, though it depends on project architecture and priorities based on problem which is being solved.\n- After normalisation, your data will be spread across different table. You can join the data from different relations back together , though joining can be expensive.\n- To retrieve data, SQL is used, though the data model behind SQL has deviated from original relational model.\n For example, SQL tables can have row duplicates, whereas true relations cant contain duplicates."
+    },
+    {
+      "type": "Para",
+      "title": "",
+      "paragraph": "SQL is a **declarative language**, as opposed to python, which is an **imperative language**. \n- Imperative : you declare steps needed for action to be performed, and the system executes them to return an output\n- Delcarative: you specify the output you want, and the system figures out the steps needed to get you the queried outputs.\n\nThere are lot of difficult queries that exist in companies, and ML is used to optimize those SQL quries too. As query optimization is the most challenging problems in database systems and normalization means that data is spread out on multiple relations, which makes joining them even harder. You only need one query optimizer and all your application can leverage it.\n\n"
+    },
+    {
+      "type": "Para",
+      "title": "Declarative ML",
+      "paragraph": "Inspired by declarative, people looked into declarative ML. With a declarative ML system, users only need to declare the features schema and the task, and the system will figure out the best model and there is no need to write code to construct, train, and tune models when building a model.\n\nPopular frameworks are Ludwig, H20 AutoML.\n\nIn H20 AutoML, we dont have to specify model structure or hyperparameters. It experiments with multiple model arch. and picks the best model given the features and the task"
+    },
+    {
+      "type": "Para",
+      "title": "Iris dataset example",
+      "paragraph": "Here we are using iris dataset by Ronald Fisher. \nEach row = one flower \nEach column = a measurement\n\n### Features:\nsepal_length\nsepal_width\npetal_length\npetal_width\n\n### Target (what you're predicting): Species, which can be setos, versicolor, virginica\n\nExample row:\n```\nsepal_length = 5.1\nsepal_width  = 3.5\npetal_length = 1.4\npetal_width  = 0.2\nspecies      = setosa\n```\nIn AutoML we will pass the 80% training data to find the best model to predict and then test it on the 20% of test data which is the unseen data.\nmax_models parameter as the name says, the maximum number of model to try it on and seed is a random number, using which you can change the randomness of picking model.\n\nit returns `aml` which have properties and functions like `leader`, which is basically the best model it chose and then you can do something like \n\n`aml.leader.explain(test)` to \"Explain how the model is making predictions on unseen (test) data\"\n`aml.leader.model_performance(test)` to \"Give model performance on unseen(test) data\"\n\nTry on google collab to get the results.\n```\nimport h2o\nfrom h2o.automl import H2OAutoML\n\nh2o.init()\n\ndata = h2o.import_file(\"https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv\")\n\ntrain, test = data.split_frame(ratios=[0.8])\n\naml = H2OAutoML(max_models=10, seed=1)\naml.train(y=\"species\", training_frame=train)\n\naml.leader.model_performance(test)\n```"
+    },
+    {
+      "type": "ParaSideImage",
+      "title": "Results",
+      "paragraph": "The best model for predecting the `species` i got was `ModelMetricsMultinomialGLM: glm`\n```\nMSE: 0.032259848791633156\nRMSE: 0.17961026917087217\nLogLoss: 0.08841955203692148\nNull degrees of freedom: 29\nResidual degrees of freedom: 15\nNull deviance: 66.36713375867689\nResidual deviance: 5.3051731222152885\n```\nA clearer representation:\n| Actual \\ Predicted | setosa | versicolor | virginica | Total |\n|-------------------|--------|------------|------------|-------|\n| setosa            | 10     | 0          | 0          | 10    |\n| versicolor        | 0      | 10         | 2          | 12    |\n| virginica         | 0      | 0          | 8          | 8     |\n|-------------------|--------|------------|------------|-------|\n| Total             | 10     | 10         | 10         | 30    |\n\n\nWe can see how when predicting the versicolor species, it got 10 right but 2 got predicted as virginica, therefore 0.1**67** error.",
+      "image": "https://wgucfadukzconobkkbwd.supabase.co/storage/v1/object/public/images/automl.png"
+    },
+    {
+      "type": "Para",
+      "title": "NoSQL",
+      "paragraph": "It just started as No schema SQL but then everyone realised its just shifting the role of maintaining schema to other team. NoSQL,  have subtypes.\n1) Document model\n2) Graph model\n\nDocument model have key value and each document can have sub document. A document is continious string encoded as JSON, XML or a binary format like BSON (Binary JSON). Each document has a unique key.\n\nIts less efficient than SQL to execute joins across documents compared to across tables because you have to retrieve all documents and then filter and probably sort or count too. \n\nTo solve this problem, engines were built for example, grahQL which gives SQL kinda like retrieving process, kinda funny and its more efficient but then it also asks for schema, to give error and to query, so its back to square one with this.\n\nThough on the bright side, its easier to change schema early and easier to make edits in the schema."
     }
   ]
 }
