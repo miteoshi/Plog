@@ -64,9 +64,16 @@
       "paragraph": "Inspired by declarative, people looked into declarative ML. With a declarative ML system, users only need to declare the features schema and the task, and the system will figure out the best model and there is no need to write code to construct, train, and tune models when building a model.\n\nPopular frameworks are Ludwig, H20 AutoML.\n\nIn H20 AutoML, we dont have to specify model structure or hyperparameters. It experiments with multiple model arch. and picks the best model given the features and the task"
     },
     {
-      "type": "Para",
+      "type": "CodePara",
       "title": "Iris dataset example",
-      "paragraph": "Here we are using iris dataset by Ronald Fisher. \nEach row = one flower \nEach column = a measurement\n\n### Features:\nsepal_length\nsepal_width\npetal_length\npetal_width\n\n### Target (what you're predicting): Species, which can be setos, versicolor, virginica\n\nExample row:\n```\nsepal_length = 5.1\nsepal_width  = 3.5\npetal_length = 1.4\npetal_width  = 0.2\nspecies      = setosa\n```\nIn AutoML we will pass the 80% training data to find the best model to predict and then test it on the 20% of test data which is the unseen data.\nmax_models parameter as the name says, the maximum number of model to try it on and seed is a random number, using which you can change the randomness of picking model.\n\nit returns `aml` which have properties and functions like `leader`, which is basically the best model it chose and then you can do something like \n\n`aml.leader.explain(test)` to \"Explain how the model is making predictions on unseen (test) data\"\n`aml.leader.model_performance(test)` to \"Give model performance on unseen(test) data\"\n\nTry on google collab to get the results.\n```\nimport h2o\nfrom h2o.automl import H2OAutoML\n\nh2o.init()\n\ndata = h2o.import_file(\"https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv\")\n\ntrain, test = data.split_frame(ratios=[0.8])\n\naml = H2OAutoML(max_models=10, seed=1)\naml.train(y=\"species\", training_frame=train)\n\naml.leader.model_performance(test)\n```"
+      "paragraph": "Here we are using iris dataset by Ronald Fisher. \nEach row = one flower \nEach column = a measurement\n\n### Features:\nsepal_length\nsepal_width\npetal_length\npetal_width\n\n### Target (what you're predicting): Species\nwhich can be setos, versicolor, virginica\n\nExample row:\n```\nsepal_length = 5.1\nsepal_width  = 3.5\npetal_length = 1.4\npetal_width  = 0.2\nspecies      = setosa\n```\n\nIn AutoML we will pass the 80% training data to find the best model to predict and then test it on the 20% of test data which is the unseen data.\nmax_models parameter as the name says, the maximum number of model to try it on and seed is a random number, using which you can change the randomness of picking model.\n\nit returns `aml` which have properties and functions like `leader`, which is basically the best model it chose and then you can do something like \n\n`aml.leader.explain(test)` to \"Explain how the model is making predictions on unseen (test) data\"\n`aml.leader.model_performance(test)` to \"Give model performance on unseen(test) data\"\n\nTry on google collab to get the results.\n```\nimport h2o\nfrom h2o.automl import H2OAutoML\n\nh2o.init()\n\ndata = h2o.import_file(\"https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv\")\n\ntrain, test = data.split_frame(ratios=[0.8])\n\naml = H2OAutoML(max_models=10, seed=1)\naml.train(y=\"species\", training_frame=train)\n\naml.leader.model_performance(test)\n```",
+      "codeblock": [
+        {
+          "codeparagraph": "",
+          "code": ""
+        }
+      ],
+      "image": ""
     },
     {
       "type": "ParaSideImage",
