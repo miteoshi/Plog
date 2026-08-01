@@ -6,6 +6,7 @@ export interface SlideLink {
 export interface CodeBlock {
   codeparagraph: string;
   code: string;
+  language?: string;
 }
 
 export interface SlideContent {

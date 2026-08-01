@@ -23,6 +23,7 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
   const touchEndX = useRef<number | null>(null);
   const [isNavigationEnabled, setIsNavigationEnabled] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
+  const [direction, setDirection] = useState(1);
 
   const basePath = useMemo(
     () => pathname.split("/").slice(0, -1).join("/"),
@@ -32,6 +33,7 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
   const handleNavigation = (newPath: number) => {
     const newSlideId =
       newPath > totalSlides ? 1 : newPath < 1 ? totalSlides : newPath;
+    setDirection(newSlideId > id ? 1 : -1);
     router.replace(`${basePath}/${newSlideId}`);
   };
 
@@ -72,13 +74,6 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
     touchEndX.current = null;
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target instanceof HTMLAnchorElement || !isNavigationEnabled) return;
-    const { clientX, currentTarget } = e;
-    const halfWidth = currentTarget.clientWidth / 2;
-    handleNavigation(clientX < halfWidth ? id - 1 : id + 1);
-  };
-
   const toggleNavigation = () => {
     setIsNavigationEnabled((prev) => !prev);
     if (isNavigationEnabled) {
@@ -108,13 +103,19 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
   return (
     <div className="relative w-full h-[calc(100vh-48px)] flex flex-col justify-center items-center">
       <div
-        className="absolute inset-0 z-10"
+        className="absolute inset-0 z-10 overflow-hidden"
         onTouchStart={(e) => handleTouch(e, true)}
         onTouchMove={(e) => handleTouch(e, false)}
         onTouchEnd={handleTouchEnd}
-        onClick={handleClick}
       >
-        {MemoizedSlideContent}
+        <div
+          key={id}
+          className={`w-full h-full overflow-y-auto overflow-x-hidden animate-in fade-in duration-500 ease-out ${
+            direction > 0 ? "slide-in-from-right-8" : "slide-in-from-left-8"
+          }`}
+        >
+          {MemoizedSlideContent}
+        </div>
 
         {showInfo && (
           <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-white text-black px-4 py-2 rounded-md text-sm transition-opacity duration-500 animate-fade">

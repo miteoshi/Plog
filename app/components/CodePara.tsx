@@ -3,13 +3,16 @@ import ReactMarkdown from "react-markdown";
 import { SlideLinks } from "./SideLinks";
 import { SlideContent } from "../type";
 import Image from "next/image";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 export function CodePara({ content }: { content: SlideContent }) {
   const hasMultipleCodeBlocks =
     content.codeblock && content.codeblock.length > 1;
 
   return (
-    <div className="flex flex-col items-center w-full px-4 py-8 gap-6">
+    <div className="flex flex-col items-center min-h-full w-full py-12 px-4">
+      <div className="my-auto w-full flex flex-col items-center gap-6">
       {/* Title and Image Section */}
       <div className="text-center w-full max-w-3xl">
         <h2 className="text-3xl sm:text-4xl font-bold mb-4">{content.title}</h2>
@@ -73,9 +76,45 @@ export function CodePara({ content }: { content: SlideContent }) {
               blockquote: ({ children }) => (
                 <blockquote className="text-gray-300">{children}</blockquote>
               ),
-              code: ({ children }) => (
-                <code className="!text-gray-300">{children}</code>
-              ),
+              pre: ({ children }) => <>{children}</>,
+              code: ({ children, className, node, ...rest }) => {
+                const match = /language-(\w+)/.exec(className || "");
+                const isBlock = String(children).includes("\n") || match;
+
+                if (isBlock) {
+                  return (
+                    <div
+                      className="w-full shadow-lg rounded-xl my-6 border border-white/5 overflow-hidden"
+                      onTouchStart={(e) => e.stopPropagation()}
+                      onTouchMove={(e) => e.stopPropagation()}
+                      onTouchEnd={(e) => e.stopPropagation()}
+                    >
+                      <SyntaxHighlighter
+                        {...rest}
+                        PreTag="div"
+                        children={String(children).replace(/\n$/, "")}
+                        language={match ? match[1] : "javascript"}
+                        style={vscDarkPlus}
+                        customStyle={{
+                          background: "rgba(0, 0, 0, 0.4)",
+                          backdropFilter: "blur(12px)",
+                          padding: "1.25rem",
+                          margin: 0,
+                          overflowX: "auto",
+                          overflowY: "auto",
+                          maxHeight: "70vh"
+                        }}
+                      />
+                    </div>
+                  );
+                }
+
+                return (
+                  <code {...rest} className="bg-white/10 rounded-md px-1.5 py-0.5 text-sm !text-gray-300">
+                    {children}
+                  </code>
+                );
+              },
             }}
           >
             {content.paragraph}
@@ -90,10 +129,28 @@ export function CodePara({ content }: { content: SlideContent }) {
 
             {/* Code Block (Full Width) */}
             {block.code && (
-              <div className="w-full mb-4 bg-zinc-900 text-white p-5 rounded-lg font-mono text-sm overflow-x-auto shadow-lg">
-                <pre className="whitespace-pre-wrap break-words">
-                  <code>{block.code}</code>
-                </pre>
+              <div 
+                className="w-full mb-4 font-mono text-sm shadow-lg rounded-xl overflow-hidden"
+                onTouchStart={(e) => e.stopPropagation()}
+                onTouchMove={(e) => e.stopPropagation()}
+                onTouchEnd={(e) => e.stopPropagation()}
+              >
+                <SyntaxHighlighter
+                  PreTag="div"
+                  children={String(block.code).replace(/\n$/, "")}
+                  language={block.language || "javascript"}
+                  style={vscDarkPlus}
+                  customStyle={{
+                    background: 'rgba(0, 0, 0, 0.4)',
+                    backdropFilter: 'blur(12px)',
+                    padding: '1.25rem',
+                    margin: 0,
+                    overflowX: "auto",
+                    overflowY: "auto",
+                    maxHeight: "70vh",
+                    border: '1px solid rgba(255, 255, 255, 0.05)'
+                  }}
+                />
               </div>
             )}
           </div>
@@ -103,6 +160,7 @@ export function CodePara({ content }: { content: SlideContent }) {
       {/* SlideLinks always at the bottom */}
       <div className="w-full flex justify-center mt-8">
         {content.links && <SlideLinks links={content.links} />}
+      </div>
       </div>
     </div>
   );
