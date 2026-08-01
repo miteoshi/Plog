@@ -68,7 +68,6 @@ export function Para({ content }: { content: SlideContent }) {
                       onTouchEnd={(e) => e.stopPropagation()}
                     >
                       <SyntaxHighlighter
-                        {...rest}
                         PreTag="div"
                         children={String(children).replace(/\n$/, "")}
                         language={match ? match[1] : "javascript"}
@@ -88,7 +87,7 @@ export function Para({ content }: { content: SlideContent }) {
                 }
                 
                 return (
-                  <code {...rest} className="bg-white/10 rounded-md px-1.5 py-0.5 text-sm !text-gray-300">
+                  <code className="bg-white/10 rounded-md px-1.5 py-0.5 text-sm !text-gray-300">
                     {children}
                   </code>
                 );
