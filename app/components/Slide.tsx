@@ -65,7 +65,7 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
     )
       return;
     const swipeDistance = touchStartX.current - touchEndX.current;
-    const minSwipeDistance = 150;
+    const minSwipeDistance = 70;
 
     if (swipeDistance > minSwipeDistance) handleNavigation(id + 1);
     else if (swipeDistance < -minSwipeDistance) handleNavigation(id - 1);
