@@ -50,6 +50,7 @@ export default async function SlidePage({
       content={slidesData[slideId - 1]}
       id={slideId}
       totalSlides={slidesData.length}
+      allSlides={slidesData}
     />
   );
 }

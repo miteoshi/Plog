@@ -2,6 +2,8 @@
 
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useRef, useState, useMemo } from "react";
+import Link from "next/link";
+import { LayoutGrid } from "lucide-react";
 import BeamsBackground from "./BeamsBackground";
 import type { SlideContent } from "../type";
 import { Para } from "./Para";
@@ -14,9 +16,10 @@ interface SlideProps {
   content: SlideContent;
   id: number;
   totalSlides: number;
+  allSlides?: SlideContent[];
 }
 
-export default function Slide({ content, id, totalSlides }: SlideProps) {
+export default function Slide({ content, id, totalSlides, allSlides }: SlideProps) {
   const router = useRouter();
   const pathname = usePathname();
   const touchStartX = useRef<number | null>(null);
@@ -39,6 +42,8 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (!isNavigationEnabled) return;
+    const target = event.target as HTMLElement;
+    if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return;
     switch (event.key) {
       case "ArrowRight":
         handleNavigation(id + 1);
@@ -65,7 +70,7 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
     )
       return;
     const swipeDistance = touchStartX.current - touchEndX.current;
-    const minSwipeDistance = 70;
+    const minSwipeDistance = 50;
 
     if (swipeDistance > minSwipeDistance) handleNavigation(id + 1);
     else if (swipeDistance < -minSwipeDistance) handleNavigation(id - 1);
@@ -96,8 +101,8 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
   }, [id, isNavigationEnabled]);
 
   const MemoizedSlideContent = useMemo(
-    () => <SlideContentRenderer content={content} />,
-    [content]
+    () => <SlideContentRenderer content={content} allSlides={allSlides} />,
+    [content, allSlides]
   );
 
   return (
@@ -139,19 +144,30 @@ export default function Slide({ content, id, totalSlides }: SlideProps) {
             </button>
           </div>
         )}
+
+        {id !== 1 && (
+          <Link 
+            href={`${basePath}/1`} 
+            className="absolute bottom-4 right-4 md:bottom-6 md:right-6 text-gray-500 hover:text-white bg-black/20 hover:bg-white/10 p-2.5 rounded-full transition-all backdrop-blur-md z-50"
+            title="Back to Topic List"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <LayoutGrid size={20} />
+          </Link>
+        )}
       </div>
     </div>
   );
 }
 
-function SlideContentRenderer({ content }: { content: SlideContent }) {
+function SlideContentRenderer({ content, allSlides }: { content: SlideContent, allSlides?: SlideContent[] }) {
   switch (content.type) {
     case "ImagePara":
       return <ImagePara content={content} />;
     case "Opener":
       return (
         <BeamsBackground>
-          <Opener content={content} />
+          <Opener content={content} allSlides={allSlides} />
         </BeamsBackground>
       );
     case "Para":
