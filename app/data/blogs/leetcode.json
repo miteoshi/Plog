@@ -262,7 +262,7 @@
       "type": "Para",
       "title": "3498. Reverse Degree of a String",
       "explanation": "[3498. Reverse Degree of a String](https://leetcode.com/problems/reverse-degree-of-a-string/description/)\n\n[#String](https://leetcode.com/tag/string/)\n[#Simulation](https://leetcode.com/tag/simulation/)\n#StreakQ",
-      "paragraph": "[3498. Reverse Degree of a String](https://leetcode.com/problems/reverse-degree-of-a-string/description/)\n\n[#String](https://leetcode.com/tag/string/)\n[#Simulation](https://leetcode.com/tag/simulation/)\n#StreakQ\n\n```js\n\n```"
+      "paragraph": "[3498. Reverse Degree of a String](https://leetcode.com/problems/reverse-degree-of-a-string/description/)\n\n[#String](https://leetcode.com/tag/string/)\n[#Simulation](https://leetcode.com/tag/simulation/)\n#StreakQ\n\n```js\n/**\n * @param {string} s\n * @return {number}\n */\nvar reverseDegree = function(s) {\n    let sum = 0\n    for(let i = 0; i<s.length; i++){\n        let pos = i+1\n\n        let ra = 122 - s.codePointAt(i) + 1\n        sum += (ra * pos)\n    }\n\n    return sum\n};\n```"
     },
     {
       "type": "ImagePara",
