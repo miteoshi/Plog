@@ -257,6 +257,18 @@
       "title": "836. Rectangle Overlap",
       "explanation": "[836. Rectangle Overlap](https://leetcode.com/problems/rectangle-overlap/description/)\n\n[#Math](https://leetcode.com/tag/math/)\n[#Geometry](https://leetcode.com/tag/geometry/)",
       "paragraph": "[836. Rectangle Overlap](https://leetcode.com/problems/rectangle-overlap/description/)\n\n[#Math](https://leetcode.com/tag/math/)\n[#Geometry](https://leetcode.com/tag/geometry/)\n\n```js\n/**\n * @param {number[]} rec1\n * @param {number[]} rec2\n * @return {boolean}\n */\nvar isRectangleOverlap = function(rec1, rec2) {\n    if(rec1[0] === rec1[2] || rec1[1] === rec1[3] || \n       rec2[0] === rec2[2] || rec2[1] === rec2[3]){\n        return false\n       }\n\n            return !(rec1[2] <= rec2[0] ||   // left\n                 rec1[3] <= rec2[1] ||   // bottom\n                 rec1[0] >= rec2[2] ||   // right\n                 rec1[1] >= rec2[3]);    // top\n};\n```"
+    },
+    {
+      "type": "Para",
+      "title": "3498. Reverse Degree of a String",
+      "explanation": "[3498. Reverse Degree of a String](https://leetcode.com/problems/reverse-degree-of-a-string/description/)\n\n[#String](https://leetcode.com/tag/string/)\n[#Simulation](https://leetcode.com/tag/simulation/)\n#StreakQ",
+      "paragraph": "[3498. Reverse Degree of a String](https://leetcode.com/problems/reverse-degree-of-a-string/description/)\n\n[#String](https://leetcode.com/tag/string/)\n[#Simulation](https://leetcode.com/tag/simulation/)\n#StreakQ\n\n```js\n\n```"
+    },
+    {
+      "type": "ImagePara",
+      "title": "I LOST MY STREAK",
+      "paragraph": "I'm goin to buy two leetcode timer travel tickets next month, to continue the streak. (I already consumed three for this month, lazy ahh)",
+      "image": "https://media.tenor.com/WWc1UD3w6HwAAAAi/nooo-bttv.gif"
     }
   ]
 }
